@@ -1,0 +1,77 @@
+# Dependências
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.min.css
+*.min.js
+*.bundle.js
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporários
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Dados locais
+*.sqlite
+*.db
+*.sql
+
+# Sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Arquivos de compressão
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tgz
+
+# Credenciais
+*.pem
+*.key
+*.crt
+*.p12
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+
+# Cobertura de testes
+coverage/
+.nyc_output/
+
+# Configurações do projeto
+.eslintcache
+*.tsbuildinfo

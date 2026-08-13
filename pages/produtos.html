@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos | Norte Barbearia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <header class="header" role="banner">
+        <div class="wrap">
+            <nav class="nav" role="navigation">
+                <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
+                <ul class="links">
+                    <li><a href="../index.html#historia">A casa</a></li>
+                    <li><a href="../index.html#servicos">Serviços</a></li>
+                    <li><a href="../index.html#cortes">Cortes</a></li>
+                    <li><a href="produtos.html">Loja</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                        <i data-lucide="shopping-bag" size="19"></i>
+                        <span class="count" id="count">0</span>
+                    </button>
+                    <button class="btn ghost" id="loginBtn">Entrar</button>
+                    <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="shop" id="loja" style="padding:40px 0 80px;">
+            <div class="wrap">
+                <div class="section-top">
+                    <div>
+                        <span class="eyebrow">Leve o cuidado para casa</span>
+                        <h2 class="title">Nossa seleção.</h2>
+                    </div>
+                    <button class="btn ghost" id="viewCart">Ver carrinho <i data-lucide="shopping-bag"
+                            size="15"></i></button>
+                </div>
+                <div class="products" id="products"></div>
+                <div class="pages" id="productPages"></div>
+            </div>
+        </section>
+
+        <section class="wrap">
+            <div class="promo-banner">
+                <span class="eyebrow">Ofertas especiais</span>
+                <h2>Compre 2 produtos e ganhe <br>um brinde exclusivo!</h2>
+                <p>Frete grátis para compras acima de R$ 100.</p>
+                <a href="#loja" class="btn" style="background:var(--orange);border-color:var(--orange);">
+                    Ver produtos <i data-lucide="arrow-down-right" size="16"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot">
+                <div>
+                    <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
+                    <p>Barbearia & Clube. Um espaço para cuidar da aparência, desacelerar e sair melhor do que entrou.
+                    </p>
+                </div>
+                <div>
+                    <h4>Visite</h4>
+                    <address>
+                        <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
+                        <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
+                    </address>
+                </div>
+                <div>
+                    <h4>Fale com a gente</h4>
+                    <a href="tel:+5511999999999">(11) 99999-9999</a>
+                    <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
+                </div>
+            </div>
+            <div class="bottom">
+                <span>&copy; 2026 Norte Barbearia</span>
+                <span>Feito para bons dias e bons cortes.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true">
+        <div>
+            <div class="drawer-head">
+                <div>
+                    <span class="eyebrow">Sua seleção</span>
+                    <h2 style="font:28px 'Playfair Display';margin:4px 0;">Carrinho</h2>
+                </div>
+                <button class="icon" data-close="drawer"><i data-lucide="x"></i></button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="total">
+                <span>Total</span>
+                <span id="total">R$ 0</span>
+            </div>
+            <button class="btn" id="checkout" style="width:100%;justify-content:center;margin-top:18px;">
+                Finalizar pedido
+            </button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>

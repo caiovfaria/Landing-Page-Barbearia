@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento | Norte Barbearia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <header class="header" role="banner">
+        <div class="wrap">
+            <nav class="nav" role="navigation">
+                <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
+                <ul class="links">
+                    <li><a href="../index.html#historia">A casa</a></li>
+                    <li><a href="../index.html#servicos">Serviços</a></li>
+                    <li><a href="../index.html#cortes">Cortes</a></li>
+                    <li><a href="produtos.html">Loja</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                        <i data-lucide="shopping-bag" size="19"></i>
+                        <span class="count" id="count">0</span>
+                    </button>
+                    <button class="btn ghost" id="loginBtn">Entrar</button>
+                    <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="booking wrap" id="booking-section" style="padding-top:40px;">
+            <div class="book-box">
+                <div>
+                    <span class="eyebrow">Agenda online</span>
+                    <h2>Seu próximo horário começa aqui.</h2>
+                    <p>Escolha o serviço, o barbeiro, o melhor dia e chegue só para aproveitar.</p>
+                    <p><b style="color:var(--orange)">●</b> <b>Agenda aberta</b><br><small>Terça a sábado · 09h às
+                            20h</small></p>
+                    <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);">
+                        <h3 style="font-size:18px;font-family:var(--font-display);">Dicas</h3>
+                        <ul style="list-style:none;padding:0;font-size:14px;color:var(--muted);">
+                            <li style="margin:8px 0;">✂️ Chegue 5 minutos antes</li>
+                            <li style="margin:8px 0;">☕ Café e água disponíveis</li>
+                            <li style="margin:8px 0;">📱 Confirmação por e-mail</li>
+                        </ul>
+                    </div>
+                </div>
+                <form class="form" id="booking">
+                    <div class="field">
+                        <label for="bookName">Seu nome</label>
+                        <input id="bookName" type="text" required placeholder="Como podemos te chamar?">
+                    </div>
+                    <div class="field">
+                        <label for="bookService">Serviço</label>
+                        <select id="bookService">
+                            <option>Corte da casa — R$ 50</option>
+                            <option>Barba completa — R$ 35</option>
+                            <option>Combo Norte — R$ 80</option>
+                            <option>Ritual premium — R$ 110</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="bookBarber">Barbeiro</label>
+                        <select id="bookBarber">
+                            <option>Carlos</option>
+                            <option>Ana</option>
+                            <option>Marcos</option>
+                            <option>Julia</option>
+                        </select>
+                    </div>
+                    <div class="twocol">
+                        <div class="field">
+                            <label for="bookDate">Data</label>
+                            <input id="bookDate" type="date" required>
+                        </div>
+                        <div class="field">
+                            <label for="bookTime">Horário</label>
+                            <select id="bookTime">
+                                <option>09:00</option>
+                                <option>10:00</option>
+                                <option>11:30</option>
+                                <option>14:00</option>
+                                <option>15:30</option>
+                                <option>17:00</option>
+                                <option>18:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" type="submit">Confirmar agendamento <i data-lucide="arrow-right"
+                            size="16"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot">
+                <div>
+                    <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
+                    <p>Barbearia & Clube. Um espaço para cuidar da aparência, desacelerar e sair melhor do que entrou.
+                    </p>
+                </div>
+                <div>
+                    <h4>Visite</h4>
+                    <address>
+                        <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
+                        <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
+                    </address>
+                </div>
+                <div>
+                    <h4>Fale com a gente</h4>
+                    <a href="tel:+5511999999999">(11) 99999-9999</a>
+                    <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
+                </div>
+            </div>
+            <div class="bottom">
+                <span>&copy; 2026 Norte Barbearia</span>
+                <span>Feito para bons dias e bons cortes.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>

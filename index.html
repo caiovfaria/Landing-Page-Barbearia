@@ -1,0 +1,3013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Norte Barbearia: cortes precisos e bons momentos.">
+    <title>Norte | Barbearia & Clube</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
+        :root {
+            --ink: #171a18;
+            --paper: #f5f1e9;
+            --cream: #fffdf8;
+            --muted: #69716d;
+            --line: #d7d1c7;
+            --orange: #c96036;
+            --green: #33473e;
+            --green-light: #4a6b5c;
+            --success: #2e7d32;
+            --error: #c62828;
+            --warning: #f57c00;
+            --header-bg: rgba(245, 241, 233, 0.92);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --shadow-color-md: rgba(0, 0, 0, 0.1);
+            --shadow-color-lg: rgba(0, 0, 0, 0.15);
+            --modal-overlay: rgba(21, 27, 24, 0.7);
+            --drawer-overlay: rgba(21, 27, 24, 0.6);
+            --font-primary: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --font-display: 'Playfair Display', serif;
+            --radius-sm: 7px;
+            --radius-md: 11px;
+            --radius-lg: 14px;
+            --radius-full: 99px;
+            --shadow-sm: 0 2px 8px var(--shadow-color);
+            --shadow-md: 0 10px 30px var(--shadow-color-md);
+            --shadow-lg: 0 18px 55px var(--shadow-color-lg);
+            --transition-fast: 0.15s;
+            --transition-normal: 0.3s;
+        }
+
+        /* ============================================================
+           DARK MODE - CORREÇÃO DE TODOS OS TEXTOS
+           ============================================================ */
+        [data-theme="dark"] {
+            --ink: #e8e3d9;
+            --paper: #1a1d1c;
+            --cream: #242827;
+            --muted: #c6cec7;
+            --line: #3a3f3d;
+            --green: #1a2a24;
+            --green-light: #4a6b5c;
+            --header-bg: rgba(26, 29, 28, 0.92);
+            --shadow-color: rgba(255, 255, 255, 0.05);
+            --shadow-color-md: rgba(255, 255, 255, 0.08);
+            --shadow-color-lg: rgba(255, 255, 255, 0.12);
+            --modal-overlay: rgba(0, 0, 0, 0.8);
+            --drawer-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        /* FORÇA TODOS OS TEXTOS PARA BRANCO NO MODO ESCURO */
+        [data-theme="dark"] body,
+        [data-theme="dark"] p,
+        [data-theme="dark"] span,
+        [data-theme="dark"] div:not(.drawer):not(.modal):not(.product):not(.cut):not(.bubble),
+        [data-theme="dark"] li,
+        [data-theme="dark"] address {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] h1,
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3,
+        [data-theme="dark"] h4,
+        [data-theme="dark"] h5,
+        [data-theme="dark"] h6,
+        [data-theme="dark"] .title,
+        [data-theme="dark"] .logo {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] a {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] a:hover {
+            color: #e99b77 !important;
+        }
+
+        /* Serviços */
+        [data-theme="dark"] .services {
+            background: #1a2a24 !important;
+        }
+
+        [data-theme="dark"] .services .section-top p,
+        [data-theme="dark"] .services .section-top .title,
+        [data-theme="dark"] .service p,
+        [data-theme="dark"] .service small,
+        [data-theme="dark"] .service h3,
+        [data-theme="dark"] .service .price {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .service p {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .service small {
+            color: #c6cec7 !important;
+        }
+
+        [data-theme="dark"] .service h3 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .service .price {
+            color: #e99b77 !important;
+        }
+
+        /* Story */
+        [data-theme="dark"] .story h2 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .story p {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .value b {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .value span {
+            color: #c6cec7 !important;
+        }
+
+        /* Quote */
+        [data-theme="dark"] .quote p {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .quote cite {
+            color: #c6cec7 !important;
+        }
+
+        /* Book Box */
+        [data-theme="dark"] .book-box {
+            background: #2d322f !important;
+        }
+
+        [data-theme="dark"] .book-box h2 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .book-box p {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .book-box small {
+            color: #c6cec7 !important;
+        }
+
+        /* Formulários */
+        [data-theme="dark"] .field label {
+            color: #c6cec7 !important;
+        }
+
+        [data-theme="dark"] .field input,
+        [data-theme="dark"] .field select {
+            background: #1a1d1c !important;
+            color: #e8e3d9 !important;
+            border-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .field input::placeholder {
+            color: #6a7570 !important;
+        }
+
+        /* Modais */
+        [data-theme="dark"] .modal {
+            background: #242827 !important;
+        }
+
+        [data-theme="dark"] .modal h3 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .modal p {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .modal .eyebrow {
+            color: #e99b77 !important;
+        }
+
+        [data-theme="dark"] .modal .close {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .modal .close:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Chat */
+        [data-theme="dark"] .chat .bubble {
+            background: #2d322f !important;
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .chat .bubble.user {
+            background: #4a6b5c !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .chat-form input {
+            background: #1a1d1c !important;
+            color: #e8e3d9 !important;
+            border-color: #3a3f3d !important;
+        }
+
+        /* Drawer */
+        [data-theme="dark"] .drawer>div {
+            background: #242827 !important;
+        }
+
+        [data-theme="dark"] .drawer-head h2 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .cart-item {
+            color: #e8e3d9 !important;
+            border-bottom-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .cart-item small {
+            color: #c6cec7 !important;
+        }
+
+        [data-theme="dark"] .total {
+            color: #ffffff !important;
+            border-top-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .empty p {
+            color: #c6cec7 !important;
+        }
+
+        /* Products */
+        [data-theme="dark"] .shop {
+            background: #2a2e2b !important;
+        }
+
+        [data-theme="dark"] .product {
+            background: #242827 !important;
+        }
+
+        [data-theme="dark"] .product strong {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .product small {
+            color: #c6cec7 !important;
+        }
+
+        [data-theme="dark"] .product span {
+            color: #c6cec7 !important;
+        }
+
+        /* Cuts */
+        [data-theme="dark"] .cut {
+            background: #242827 !important;
+        }
+
+        [data-theme="dark"] .cut-info b {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .cut-info span {
+            color: #c6cec7 !important;
+        }
+
+        /* Pages */
+        [data-theme="dark"] .page {
+            color: #e8e3d9 !important;
+            border-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .page:hover,
+        [data-theme="dark"] .page.active {
+            background: #e8e3d9 !important;
+            color: #1a1d1c !important;
+        }
+
+        /* Ticker */
+        [data-theme="dark"] .ticker {
+            background: #2d322f !important;
+            border-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .ticker div {
+            color: #e8e3d9 !important;
+        }
+
+        /* Rating */
+        [data-theme="dark"] .rating {
+            background: #242827 !important;
+        }
+
+        [data-theme="dark"] .rating b {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .rating span {
+            color: #c6cec7 !important;
+        }
+
+        /* Stamp */
+        [data-theme="dark"] .stamp {
+            background: #1a1d1c !important;
+            border-color: #3a3f3d !important;
+            color: #e8e3d9 !important;
+        }
+
+        /* Promo Banner */
+        [data-theme="dark"] .promo-banner {
+            background: #1a2a24 !important;
+        }
+
+        [data-theme="dark"] .promo-banner h2 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .promo-banner p {
+            color: #c6cec7 !important;
+        }
+
+        /* Suggestion */
+        [data-theme="dark"] .suggestion-btn {
+            background: #242827 !important;
+            color: #e8e3d9 !important;
+            border-color: #3a3f3d !important;
+        }
+
+        [data-theme="dark"] .suggestion-btn:hover {
+            background: var(--orange) !important;
+            color: #ffffff !important;
+        }
+
+        /* Toast */
+        [data-theme="dark"] .toast {
+            background: #1a1d1c !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .toast.success {
+            background: #2e7d32 !important;
+        }
+
+        [data-theme="dark"] .toast.error {
+            background: #c62828 !important;
+        }
+
+        [data-theme="dark"] .toast.warning {
+            background: #f57c00 !important;
+        }
+
+        /* Scroll Top */
+        [data-theme="dark"] .scroll-top {
+            background: #242827 !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .scroll-top:hover {
+            background: var(--orange) !important;
+        }
+
+        /* Eyebrow */
+        [data-theme="dark"] .eyebrow {
+            color: #e99b77 !important;
+        }
+
+        /* Hero */
+        [data-theme="dark"] .hero h1 {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .hero p {
+            color: #e8e3d9 !important;
+        }
+
+        /* Footer */
+        [data-theme="dark"] footer {
+            background: #0d1210 !important;
+        }
+
+        [data-theme="dark"] .foot p,
+        [data-theme="dark"] .foot span,
+        [data-theme="dark"] .foot a,
+        [data-theme="dark"] .foot address {
+            color: #c6cec7 !important;
+        }
+
+        [data-theme="dark"] .foot h4 {
+            color: #e99b77 !important;
+        }
+
+        [data-theme="dark"] .bottom {
+            color: #6a7570 !important;
+        }
+
+        /* Header */
+        [data-theme="dark"] .links {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .links a:hover {
+            color: #e99b77 !important;
+        }
+
+        [data-theme="dark"] .icon {
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .icon:hover {
+            background: rgba(201, 96, 54, 0.2) !important;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: #3a3f3d !important;
+            color: #e8e3d9 !important;
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background: var(--orange) !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .logo {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .logo:hover {
+            color: #e99b77 !important;
+        }
+
+        /* Years */
+        [data-theme="dark"] .years {
+            background: #1a2a24 !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .years small {
+            color: #c6cec7 !important;
+        }
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background var(--transition-normal), color var(--transition-normal);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            color: var(--orange);
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--orange);
+            outline-offset: 2px;
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .wrap {
+            width: min(1180px, calc(100% - 44px));
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font: 11px var(--font-mono);
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--orange);
+            display: inline-block;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 19px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: #fff;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .btn:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn.ghost:hover {
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: background var(--transition-normal), border-color var(--transition-normal);
+        }
+
+        .nav {
+            height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.08em;
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .mark {
+            width: 23px;
+            height: 23px;
+            border: 2px solid var(--orange);
+            border-radius: 50% 50% 50% 4px;
+            transform: rotate(45deg);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .links a {
+            position: relative;
+        }
+
+        .links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width var(--transition-normal);
+        }
+
+        .links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            position: relative;
+            border-radius: 50%;
+            transition: background var(--transition-fast);
+            color: var(--ink);
+        }
+
+        .icon:hover {
+            background: rgba(201, 96, 54, 0.1);
+        }
+
+        .count {
+            position: absolute;
+            right: 2px;
+            top: 3px;
+            border-radius: 50%;
+            height: 16px;
+            width: 16px;
+            display: grid;
+            place-items: center;
+            background: var(--orange);
+            color: #fff;
+            font: 10px var(--font-mono);
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .count.bounce {
+            animation: bounce 0.3s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* ============================================================
+           THEME TOGGLE
+           ============================================================ */
+        .theme-toggle {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--line);
+            color: var(--ink);
+            transition: all var(--transition-normal);
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .theme-toggle:hover {
+            background: var(--orange);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.04fr 0.96fr;
+            gap: 48px;
+            align-items: center;
+            min-height: 620px;
+            padding: 20px 0 48px;
+        }
+
+        .hero h1 {
+            font: 600 clamp(45px, 6.1vw, 82px)/0.99 var(--font-display);
+            letter-spacing: -0.065em;
+            margin: 15px 0 23px;
+        }
+
+        .hero h1 em {
+            color: var(--orange);
+            font-style: italic;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.65;
+            max-width: 470px;
+            margin-bottom: 29px;
+        }
+
+        .cta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-photo {
+            height: 535px;
+            position: relative;
+        }
+
+        .hero-photo>img {
+            height: 100%;
+            width: 92%;
+            object-fit: cover;
+            border-radius: 120px 120px 14px 14px;
+            filter: saturate(0.75);
+        }
+
+        .stamp {
+            position: absolute;
+            right: 0;
+            top: 38px;
+            width: 91px;
+            height: 91px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--paper);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font: 10px/1.3 var(--font-mono);
+            color: var(--green);
+            transform: rotate(12deg);
+            z-index: 2;
+            pointer-events: none;
+            transition: background var(--transition-normal), border-color var(--transition-normal);
+        }
+
+        .stamp i {
+            position: absolute;
+            color: var(--orange);
+        }
+
+        .rating {
+            position: absolute;
+            left: -26px;
+            bottom: 24px;
+            background: var(--cream);
+            padding: 15px 17px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+            pointer-events: none;
+            transition: background var(--transition-normal);
+        }
+
+        .rating b {
+            font: 600 22px var(--font-display);
+            display: block;
+            color: var(--ink);
+        }
+
+        .rating span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* ============================================================
+           TICKER
+           ============================================================ */
+        .ticker {
+            border-block: 1px solid var(--line);
+            background: var(--line);
+            overflow: hidden;
+            user-select: none;
+            transition: background var(--transition-normal), border-color var(--transition-normal);
+        }
+
+        .ticker div {
+            padding: 15px 0;
+            white-space: nowrap;
+            width: max-content;
+            animation: tickerSlide 20s linear infinite;
+            font: 12px var(--font-mono);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+
+        .ticker i {
+            color: var(--orange);
+            margin: 0 25px;
+            vertical-align: middle;
+        }
+
+        @keyframes tickerSlide {
+            to {
+                transform: translateX(-35%);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ticker div {
+                animation: none;
+            }
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: clamp(35px, 4vw, 54px);
+            margin: 9px 0 0;
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+        }
+
+        .section-top p {
+            max-width: 350px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        /* ============================================================
+           STORY
+           ============================================================ */
+        .story {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-image {
+            height: 510px;
+            background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=85') center/cover;
+            border-radius: var(--radius-lg);
+            filter: grayscale(0.3);
+            position: relative;
+        }
+
+        .years {
+            position: absolute;
+            right: -25px;
+            bottom: 28px;
+            width: 160px;
+            padding: 19px;
+            background: var(--green);
+            color: var(--cream);
+            border-radius: var(--radius-md);
+            z-index: 2;
+            transition: background var(--transition-normal);
+        }
+
+        .years b {
+            font: 42px/0.85 var(--font-display);
+            display: block;
+        }
+
+        .years small {
+            display: block;
+            margin-top: 7px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .story h2 {
+            font: 600 43px/1.1 var(--font-display);
+            letter-spacing: -0.045em;
+            margin: 12px 0 20px;
+        }
+
+        .story p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .values {
+            margin-top: 30px;
+            border-top: 1px solid var(--line);
+        }
+
+        .value {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 14px;
+            transition: border-color var(--transition-normal);
+        }
+
+        .value i {
+            flex-shrink: 0;
+        }
+
+        .value span {
+            margin-left: auto;
+            text-align: right;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* ============================================================
+           SERVICES
+           ============================================================ */
+        .services {
+            background: var(--green);
+            color: var(--cream);
+            transition: background var(--transition-normal);
+        }
+
+        .services .eyebrow {
+            color: #e99b77;
+        }
+
+        .services .section-top p,
+        .service p {
+            color: #c6cec7;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .service {
+            padding: 28px 25px 27px 0;
+            margin-right: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .service h3 {
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font: 26px var(--font-display);
+            align-items: center;
+            color: var(--cream);
+        }
+
+        .price {
+            color: #e99b77;
+            font: 13px var(--font-mono);
+            white-space: nowrap;
+        }
+
+        .service p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 10px 0;
+            color: #c6cec7;
+        }
+
+        .service small {
+            font: 11px var(--font-mono);
+            color: #aab5ad;
+        }
+
+        /* ============================================================
+           CUTS
+           ============================================================ */
+        .cuts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+        }
+
+        .cut {
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+        }
+
+        .cut:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cut img {
+            width: 100%;
+            height: 290px;
+            object-fit: cover;
+            filter: saturate(0.65);
+            transition: filter var(--transition-normal);
+        }
+
+        .cut:hover img {
+            filter: saturate(0.85);
+        }
+
+        .cut-info {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cut-info b {
+            font-size: 15px;
+        }
+
+        .cut-info span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .pages {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .page {
+            width: 35px;
+            height: 35px;
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            color: var(--ink);
+        }
+
+        .page:hover {
+            background: var(--ink);
+            color: var(--cream);
+            border-color: var(--ink);
+        }
+
+        .page.active {
+            background: var(--ink);
+            color: var(--cream);
+            border-color: var(--ink);
+        }
+
+        /* ============================================================
+           QUOTE
+           ============================================================ */
+        .quote {
+            text-align: center;
+            max-width: 830px;
+            margin: 0 auto;
+        }
+
+        .quote blockquote {
+            margin: 0;
+        }
+
+        .quote p {
+            font: 600 clamp(29px, 4.2vw, 51px)/1.14 var(--font-display);
+            letter-spacing: -0.045em;
+        }
+
+        .quote p::before {
+            content: '"';
+            color: var(--orange);
+        }
+
+        .quote p::after {
+            content: '"';
+            color: var(--orange);
+        }
+
+        .quote cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--muted);
+            font-style: normal;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            padding: 54px 0 22px;
+            background: #151b18;
+            color: var(--cream);
+            margin-top: auto;
+        }
+
+        .foot {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 45px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .foot p,
+        .foot span,
+        .foot a,
+        .foot address {
+            color: #bbc4bd;
+            font-size: 14px;
+            line-height: 1.6;
+            font-style: normal;
+        }
+
+        .foot a,
+        .foot span {
+            display: block;
+        }
+
+        .foot a:hover {
+            color: var(--orange);
+        }
+
+        .foot h4 {
+            font: 11px var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #e99b77;
+            margin: 2px 0 11px;
+        }
+
+        .foot .btn {
+            margin-top: 12px;
+            background: var(--cream);
+            color: var(--ink);
+            border-color: var(--cream);
+        }
+
+        .foot .btn:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+        }
+
+        .bottom {
+            padding-top: 18px;
+            color: #89948c;
+            display: flex;
+            justify-content: space-between;
+            font: 11px var(--font-mono);
+        }
+
+        /* ============================================================
+           MODALS
+           ============================================================ */
+        .layer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--modal-overlay);
+            z-index: 1000;
+            place-items: center;
+            padding: 17px;
+            backdrop-filter: blur(4px);
+            transition: background var(--transition-normal);
+        }
+
+        .layer.show {
+            display: grid;
+        }
+
+        .modal {
+            position: relative;
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            width: min(430px, 100%);
+            padding: 28px;
+            box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
+            transition: background var(--transition-normal);
+        }
+
+        .modal h3 {
+            font: 30px var(--font-display);
+            margin: 8px 0;
+        }
+
+        .modal p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: transparent;
+            border: none;
+            transition: background var(--transition-fast);
+            color: var(--ink);
+        }
+
+        .close:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        /* ============================================================
+           CHAT
+           ============================================================ */
+        .chat {
+            height: 180px;
+            overflow-y: auto;
+            padding: 4px 0;
+            scroll-behavior: smooth;
+        }
+
+        .chat::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat::-webkit-scrollbar-thumb {
+            background: var(--line);
+            border-radius: 2px;
+        }
+
+        .bubble {
+            margin: 7px 0;
+            max-width: 82%;
+            padding: 9px 11px;
+            border-radius: 10px;
+            background: var(--line);
+            font-size: 13px;
+            line-height: 1.4;
+            animation: bubbleIn 0.2s ease;
+            color: var(--ink);
+            transition: background var(--transition-normal), color var(--transition-normal);
+        }
+
+        @keyframes bubbleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .bubble.user {
+            margin-left: auto;
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 7px;
+            margin-top: 12px;
+        }
+
+        .chat-form input {
+            flex: 1;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+            background: var(--paper);
+            transition: border-color var(--transition-fast), background var(--transition-normal);
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .chat-form input:focus {
+            border-color: var(--orange);
+            outline: none;
+        }
+
+        .suggestion-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            background: var(--cream);
+            color: var(--ink);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .suggestion-btn:hover {
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
+        }
+
+        /* ============================================================
+           DRAWER (CART)
+           ============================================================ */
+        .drawer {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background: var(--drawer-overlay);
+            grid-template-columns: 1fr min(390px, 100%);
+            transition: background var(--transition-normal);
+        }
+
+        .drawer.show {
+            display: grid;
+        }
+
+        .drawer>div {
+            grid-column: 2;
+            background: var(--cream);
+            padding: 26px;
+            overflow-y: auto;
+            max-height: 100vh;
+            transition: background var(--transition-normal);
+        }
+
+        .drawer-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cart-items {
+            min-height: 260px;
+            padding: 10px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 14px;
+        }
+
+        .cart-item small {
+            color: var(--muted);
+        }
+
+        .cart-item .add {
+            font-size: 20px;
+            color: var(--error);
+            padding: 0 8px;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--ink);
+            padding-top: 16px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 55px 0;
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast {
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%) translateY(140px);
+            background: var(--ink);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            transition: transform var(--transition-normal), background var(--transition-normal);
+            max-width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        .toast.warning {
+            background: var(--warning);
+        }
+
+        /* ============================================================
+           SCROLL TOP
+           ============================================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transition-normal);
+            z-index: 50;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--orange);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           SKIP LINK
+           ============================================================ */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 0 0 7px 7px;
+            z-index: 9999;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ============================================================
+           FIELD
+           ============================================================ */
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            font: 11px var(--font-mono);
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            background: var(--paper);
+            outline: none;
+            transition: border-color var(--transition-fast), background var(--transition-normal), color var(--transition-normal);
+            color: var(--ink);
+            font: inherit;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--orange);
+        }
+
+        .field.error input,
+        .field.error select {
+            border-color: var(--error);
+            background: #fff5f5;
+        }
+
+        .field .error-message {
+            display: none;
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 4px;
+        }
+
+        .field.error .error-message {
+            display: block;
+        }
+
+        .twocol {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
+
+        /* ============================================================
+           BOOKING
+           ============================================================ */
+        .booking {
+            padding: 80px 0;
+        }
+
+        .book-box {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 65px;
+            background: var(--line);
+            border-radius: var(--radius-lg);
+            transition: background var(--transition-normal);
+        }
+
+        .book-box h2 {
+            font: 600 47px/1.04 var(--font-display);
+            letter-spacing: -0.05em;
+            margin: 12px 0 17px;
+        }
+
+        .book-box p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .form {
+            padding: 24px;
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            transition: background var(--transition-normal);
+        }
+
+        .form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============================================================
+           SHOP
+           ============================================================ */
+        .shop {
+            background: var(--line);
+            transition: background var(--transition-normal);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .product {
+            background: var(--cream);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            background: var(--line);
+            border-radius: var(--radius-sm);
+            filter: saturate(0.7);
+            transition: background var(--transition-normal);
+        }
+
+        .product small {
+            display: block;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .product div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4px 3px 3px;
+        }
+
+        .product strong {
+            font-size: 14px;
+        }
+
+        .add {
+            border: 0;
+            background: transparent;
+            color: var(--orange);
+            font-size: 22px;
+            transition: transform var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .add:hover {
+            transform: scale(1.2);
+        }
+
+        /* ============================================================
+           PROMO BANNER
+           ============================================================ */
+        .promo-banner {
+            background: var(--green);
+            color: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0 60px;
+            transition: background var(--transition-normal);
+        }
+
+        .promo-banner .eyebrow {
+            color: #e99b77;
+        }
+
+        .promo-banner h2 {
+            font-size: clamp(28px, 3vw, 38px);
+            margin: 8px 0 12px;
+            font-family: var(--font-display);
+        }
+
+        .promo-banner p {
+            color: #c6cec7;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        .promo-banner .btn {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 768px) {
+            .links {
+                display: none;
+            }
+
+            .nav-actions .btn:not(.theme-toggle) {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                min-height: 0;
+                padding-top: 15px;
+            }
+
+            .hero-photo {
+                height: 390px;
+            }
+
+            .hero-photo>img {
+                width: 94%;
+            }
+
+            .section-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-top p {
+                max-width: 100%;
+                margin-top: 17px;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .story-image {
+                height: 380px;
+            }
+
+            .years {
+                right: 12px;
+                width: 130px;
+                padding: 14px;
+            }
+
+            .years b {
+                font-size: 32px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service {
+                margin-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+            }
+
+            .service:last-child {
+                border-bottom: none;
+            }
+
+            .cuts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cut img {
+                height: 205px;
+            }
+
+            .book-box {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .book-box h2 {
+                font-size: 34px;
+            }
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .foot {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+
+            .foot>div:first-child {
+                grid-column: span 2;
+            }
+
+            .bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .drawer {
+                grid-template-columns: 1fr;
+            }
+
+            .drawer>div {
+                grid-column: 1;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+
+            .rating {
+                left: 10px;
+                bottom: 10px;
+                padding: 12px 14px;
+            }
+
+            .rating b {
+                font-size: 18px;
+            }
+
+            .stamp {
+                width: 70px;
+                height: 70px;
+                right: 5px;
+                top: 20px;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .wrap {
+                width: min(100% - 30px, 1180px);
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-photo {
+                height: 300px;
+            }
+
+            .cuts-grid,
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .twocol {
+                grid-template-columns: 1fr;
+            }
+
+            .foot {
+                grid-template-columns: 1fr;
+            }
+
+            .foot>div:first-child {
+                grid-column: auto;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .book-box {
+                padding: 20px 15px;
+            }
+
+            .book-box h2 {
+                font-size: 28px;
+            }
+
+            .modal {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .nav {
+                height: 68px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo .mark {
+                width: 18px;
+                height: 18px;
+            }
+
+            .quote p {
+                font-size: 24px;
+            }
+
+            .service h3 {
+                font-size: 20px;
+            }
+
+            .stamp {
+                width: 60px;
+                height: 60px;
+                font-size: 8px;
+                right: 0;
+                top: 12px;
+            }
+
+            .rating {
+                left: 5px;
+                bottom: 5px;
+                padding: 10px 12px;
+            }
+
+            .rating b {
+                font-size: 16px;
+            }
+
+            .rating span {
+                font-size: 10px;
+            }
+
+            .btn {
+                padding: 11px 16px;
+                font-size: 13px;
+            }
+
+            .section-top .title {
+                font-size: 28px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .ticker div {
+                animation: none;
+            }
+        }
+
+        /* =================================================================
+           CORREÇÃO DOS BOTÕES NO MODO ESCURO (ÚLTIMA ALTERAÇÃO ADICIONADA)
+           ================================================================= */
+
+        /* 1. Botão de Agendar (Fundo preto no claro, Fundo claro e texto preto no escuro) */
+        [data-theme="dark"] .btn {
+            background-color: #f5f1e9 !important;
+            /* Cor bege clara do papel */
+            color: #171a18 !important;
+            /* Cor do texto escura (tinta) */
+            border-color: #f5f1e9 !important;
+            /* Borda da mesma cor */
+        }
+
+        /* Ao passar o mouse no modo escuro, mantém laranja */
+        [data-theme="dark"] .btn:hover {
+            background-color: var(--orange) !important;
+            color: #ffffff !important;
+            border-color: var(--orange) !important;
+        }
+
+        /* 2. Botão "Entrar" e botões Ghost (Transparente com borda e texto claro no escuro) */
+        [data-theme="dark"] .btn.ghost {
+            background-color: transparent !important;
+            color: #f5f1e9 !important;
+            /* Texto claro para contrastar com o fundo escuro */
+            border-color: #f5f1e9 !important;
+            /* Borda clara */
+        }
+
+        /* Ao passar o mouse no modo escuro, fica laranja sólido */
+        [data-theme="dark"] .btn.ghost:hover {
+            background-color: var(--orange) !important;
+            color: #ffffff !important;
+            border-color: var(--orange) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Skip Link -->
+    <a class="skip-link" href="#inicio">Pular para o conteúdo principal</a>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header" role="banner">
+        <div class="wrap">
+            <nav class="nav" role="navigation">
+                <a href="#" class="logo"><i class="mark"></i>NORTE</a>
+                <ul class="links">
+                    <li><a href="#historia">A casa</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#cortes">Cortes</a></li>
+                    <li><a href="#" onclick="alert('Página em desenvolvimento')">Loja</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                        <i data-lucide="shopping-bag" size="19"></i>
+                        <span class="count" id="count">0</span>
+                    </button>
+                    <button class="btn ghost" id="loginBtn">Entrar</button>
+                    <a class="btn" href="#" onclick="openBooking()">Agendar <i data-lucide="arrow-up-right"
+                            size="15"></i></a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema escuro/claro">
+                        <span class="icon-sun">☀️</span>
+                        <span class="icon-moon">🌙</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- MAIN -->
+    <!-- ============================================================ -->
+    <main>
+
+        <!-- Hero -->
+        <section class="hero wrap" id="inicio" aria-labelledby="hero-title">
+            <div>
+                <span class="eyebrow">Desde 2014 · São Paulo</span>
+                <h1 id="hero-title">Seu tempo merece um <em>bom corte.</em></h1>
+                <p>Uma barbearia de bairro para quem procura precisão, conversa boa e uma pausa bem aproveitada na
+                    semana.</p>
+                <div class="cta">
+                    <a class="btn" href="#" onclick="openBooking()">Encontrar um horário <i data-lucide="calendar-days"
+                            size="16"></i></a>
+                    <a class="btn ghost" href="#historia">Conheça a Norte <i data-lucide="arrow-down-right"
+                            size="16"></i></a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1100&q=85"
+                    alt="Barbeiro fazendo acabamento em cliente" loading="lazy">
+                <div class="stamp"><i data-lucide="scissors"></i>feito<br>à mão</div>
+                <div class="rating"><b>4,9 ★</b><span>mais de 280 avaliações</span></div>
+            </div>
+        </section>
+
+        <!-- Ticker -->
+        <div class="ticker">
+            <div>
+                Corte bem feito <i data-lucide="sparkles" size="14"></i>
+                Café passado na hora <i data-lucide="sparkles" size="14"></i>
+                Conversa sem pressa <i data-lucide="sparkles" size="14"></i>
+                Produtos de primeira <i data-lucide="sparkles" size="14"></i>
+                Corte bem feito <i data-lucide="sparkles" size="14"></i>
+                Café passado na hora <i data-lucide="sparkles" size="14"></i>
+            </div>
+        </div>
+
+        <!-- História -->
+        <section class="wrap story" id="historia" aria-labelledby="story-title">
+            <div class="story-image">
+                <div class="years"><b>12</b><small>anos fazendo parte do seu estilo.</small></div>
+            </div>
+            <div>
+                <span class="eyebrow">Nossa história</span>
+                <h2 id="story-title">O lugar onde o corte encontra a conversa.</h2>
+                <p>A Norte nasceu de uma cadeira, um espelho e a vontade de fazer o básico muito bem. Doze anos depois,
+                    continuamos acreditando que sair com o cabelo em dia muda a forma como você encara o resto do dia.
+                </p>
+                <p>Aqui, cada atendimento tem o ritmo certo: a técnica de quem conhece o ofício e a leveza de quem
+                    lembra do seu último corte.</p>
+                <div class="values">
+                    <div class="value">
+                        <i data-lucide="scissors" color="#c96036"></i>
+                        <b>Técnica sem modismo</b>
+                        <span>Clássico ou atual, do seu jeito.</span>
+                    </div>
+                    <div class="value">
+                        <i data-lucide="coffee" color="#c96036"></i>
+                        <b>Ritual de cuidado</b>
+                        <span>Seu horário, seu momento.</span>
+                    </div>
+                    <div class="value">
+                        <i data-lucide="heart-handshake" color="#c96036"></i>
+                        <b>Gente que conhece gente</b>
+                        <span>Sem atendimento automático.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section class="services" id="servicos" aria-labelledby="services-title">
+            <div class="wrap">
+                <div class="section-top">
+                    <div>
+                        <span class="eyebrow">Cadeira, navalha e cuidado</span>
+                        <h2 class="title" id="services-title">O essencial,<br>muito bem feito.</h2>
+                    </div>
+                    <p>Escolha seu serviço e deixe o resto com a gente. Todos incluem finalização e dicas para manter o
+                        resultado em casa.</p>
+                </div>
+                <div class="service-grid" id="serviceGrid"></div>
+            </div>
+        </section>
+
+        <!-- Cortes -->
+        <section class="wrap" id="cortes" aria-labelledby="cuts-title">
+            <div class="section-top">
+                <div>
+                    <span class="eyebrow">Inspiração para sua próxima visita</span>
+                    <h2 class="title" id="cuts-title">Cortes com identidade.</h2>
+                </div>
+                <p>Do clássico bem aparado ao visual com textura. Veja o que pode funcionar para você.</p>
+            </div>
+            <div class="cuts-grid" id="cuts"></div>
+            <div class="pages" id="pages"></div>
+        </section>
+
+        <!-- Depoimento -->
+        <section class="wrap" aria-labelledby="testimonial-title">
+            <div class="quote">
+                <span class="eyebrow">Quem senta na nossa cadeira</span>
+                <blockquote>
+                    <p id="testimonial-title">Não é só um corte: você sente que alguém realmente prestou atenção no que
+                        você queria.</p>
+                    <cite>— Rafael M., cliente Norte há 5 anos</cite>
+                </blockquote>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer role="contentinfo">
+        <div class="wrap">
+            <div class="foot">
+                <div>
+                    <a href="#" class="logo"><i class="mark"></i>NORTE</a>
+                    <p>Barbearia & Clube. Um espaço para cuidar da aparência, desacelerar e sair melhor do que entrou.
+                    </p>
+                </div>
+                <div>
+                    <h4>Visite</h4>
+                    <address>
+                        <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
+                        <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
+                    </address>
+                </div>
+                <div>
+                    <h4>Fale com a gente</h4>
+                    <a href="tel:+5511999999999">(11) 99999-9999</a>
+                    <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
+                    <button class="btn" id="supportBtn">Suporte <i data-lucide="message-circle" size="15"></i></button>
+                </div>
+            </div>
+            <div class="bottom">
+                <span>&copy; 2026 Norte Barbearia</span>
+                <span>Feito para bons dias e bons cortes.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- MODAL SUPORTE (CHAT) -->
+    <!-- ============================================================ -->
+    <div class="layer" id="supportLayer" role="dialog" aria-modal="true" aria-labelledby="support-title">
+        <div class="modal">
+            <button class="icon close" data-close="supportLayer" aria-label="Fechar suporte">
+                <i data-lucide="x"></i>
+            </button>
+            <span class="eyebrow">Suporte Norte</span>
+            <h3 id="support-title">Como ajudamos?</h3>
+            <p>Normalmente respondemos em poucos minutos.</p>
+            <div class="chat" id="chat">
+                <div class="bubble">Olá! Posso ajudar com agendamento, pedidos ou dúvidas sobre serviços. O que você
+                    precisa?</div>
+            </div>
+            <form class="chat-form" id="supportForm">
+                <input type="text" id="chatMessage" required placeholder="Digite sua mensagem..."
+                    aria-label="Digite sua mensagem">
+                <button class="btn" type="submit" aria-label="Enviar mensagem">
+                    <i data-lucide="send" size="16"></i>
+                </button>
+            </form>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;">
+                <button class="suggestion-btn" data-msg="Quero agendar um horário">📅 Agendar</button>
+                <button class="suggestion-btn" data-msg="Quais os preços?">💰 Preços</button>
+                <button class="suggestion-btn" data-msg="Onde fica a barbearia?">📍 Endereço</button>
+                <button class="suggestion-btn" data-msg="Quais produtos vocês têm?">🛍️ Produtos</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODAL LOGIN -->
+    <!-- ============================================================ -->
+    <div class="layer" id="loginLayer" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <div class="modal">
+            <button class="icon close" data-close="loginLayer" aria-label="Fechar login">
+                <i data-lucide="x"></i>
+            </button>
+            <span class="eyebrow">Área do cliente</span>
+            <h3 id="login-title">Bem-vindo de volta.</h3>
+            <p>Entre para acompanhar seus agendamentos e pedidos.</p>
+            <form id="loginForm" novalidate>
+                <div class="field">
+                    <label for="loginName">Nome</label>
+                    <input id="loginName" type="text" required placeholder="Seu nome">
+                </div>
+                <div class="field">
+                    <label for="loginEmail">E-mail</label>
+                    <input id="loginEmail" type="email" required placeholder="voce@email.com">
+                </div>
+                <button class="btn" type="submit" style="width:100%;justify-content:center;">
+                    Entrar na Norte <i data-lucide="arrow-right" size="16"></i>
+                </button>
+            </form>
+            <div class="success" id="loginSuccess">
+                <i data-lucide="circle-check-big" color="#c96036" size="48"></i>
+                <h3>Você está dentro.</h3>
+                <p id="welcome"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODAL AGENDAMENTO -->
+    <!-- ============================================================ -->
+    <div class="layer" id="bookingLayer" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+        <div class="modal">
+            <button class="icon close" data-close="bookingLayer" aria-label="Fechar agendamento">
+                <i data-lucide="x"></i>
+            </button>
+            <span class="eyebrow">Agenda online</span>
+            <h3 id="booking-title">Seu próximo horário começa aqui.</h3>
+            <p>Escolha o serviço, o barbeiro, o melhor dia e chegue só para aproveitar.</p>
+            <form id="bookingForm" novalidate style="margin-top:16px;">
+                <div class="field">
+                    <label for="bookName">Seu nome</label>
+                    <input id="bookName" type="text" required placeholder="Como podemos te chamar?">
+                </div>
+                <div class="field">
+                    <label for="bookService">Serviço</label>
+                    <select id="bookService">
+                        <option>Corte da casa — R$ 50</option>
+                        <option>Barba completa — R$ 35</option>
+                        <option>Combo Norte — R$ 80</option>
+                        <option>Ritual premium — R$ 110</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="bookBarber">Barbeiro</label>
+                    <select id="bookBarber">
+                        <option>Carlos</option>
+                        <option>Ana</option>
+                        <option>Marcos</option>
+                        <option>Julia</option>
+                    </select>
+                </div>
+                <div class="twocol">
+                    <div class="field">
+                        <label for="bookDate">Data</label>
+                        <input id="bookDate" type="date" required>
+                    </div>
+                    <div class="field">
+                        <label for="bookTime">Horário</label>
+                        <select id="bookTime">
+                            <option>09:00</option>
+                            <option>10:00</option>
+                            <option>11:30</option>
+                            <option>14:00</option>
+                            <option>15:30</option>
+                            <option>17:00</option>
+                            <option>18:30</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn" type="submit" style="width:100%;justify-content:center;">Confirmar agendamento <i
+                        data-lucide="arrow-right" size="16"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CARRINHO DRAWER -->
+    <!-- ============================================================ -->
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div>
+            <div class="drawer-head">
+                <div>
+                    <span class="eyebrow">Sua seleção</span>
+                    <h2 id="cart-title" style="font:28px 'Playfair Display';margin:4px 0;">Carrinho</h2>
+                </div>
+                <button class="icon" data-close="drawer" aria-label="Fechar carrinho">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="total">
+                <span>Total</span>
+                <span id="total">R$ 0</span>
+            </div>
+            <button class="btn" id="checkout" style="width:100%;justify-content:center;margin-top:18px;">
+                Finalizar pedido
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TOAST -->
+    <!-- ============================================================ -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+    <!-- ============================================================ -->
+    <!-- SCROLL TOP -->
+    <!-- ============================================================ -->
+    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+        <i data-lucide="arrow-up" size="20"></i>
+    </button>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT ORGANIZADO -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // NORTE BARBEARIA - JAVASCRIPT ORGANIZADO
+        // ============================================================
+
+        (function () {
+            'use strict';
+
+            // ============================================================
+            // DOM HELPERS
+            // ============================================================
+            const $ = (selector) => document.querySelector(selector);
+            const $$ = (selector) => document.querySelectorAll(selector);
+
+            // ============================================================
+            // THEME SYSTEM
+            // ============================================================
+            const Theme = {
+                init: function () {
+                    const saved = localStorage.getItem('norteTheme');
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const theme = saved || (prefersDark ? 'dark' : 'light');
+                    this.set(theme);
+                    this.setupToggle();
+                },
+
+                set: function (theme) {
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('norteTheme', theme);
+                    this.updateButton(theme);
+                },
+
+                toggle: function () {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    this.set(next);
+                },
+
+                updateButton: function (theme) {
+                    const btn = $('#themeToggle');
+                    if (!btn) return;
+                    const sun = btn.querySelector('.icon-sun');
+                    const moon = btn.querySelector('.icon-moon');
+                    if (theme === 'dark') {
+                        sun.style.display = 'block';
+                        moon.style.display = 'none';
+                    } else {
+                        sun.style.display = 'none';
+                        moon.style.display = 'block';
+                    }
+                },
+
+                setupToggle: function () {
+                    const btn = $('#themeToggle');
+                    if (btn) {
+                        btn.addEventListener('click', this.toggle.bind(this));
+                    }
+                }
+            };
+
+            // ============================================================
+            // TOAST SYSTEM
+            // ============================================================
+            const Toast = {
+                show: function (message, type) {
+                    type = type || 'info';
+                    const toast = $('#toast');
+                    if (!toast) return;
+                    toast.textContent = message;
+                    toast.className = 'toast ' + type;
+                    void toast.offsetWidth;
+                    toast.classList.add('show');
+                    clearTimeout(toast._hide);
+                    toast._hide = setTimeout(function () {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }
+            };
+
+            // ============================================================
+            // MODAL SYSTEM
+            // ============================================================
+            const Modal = {
+                toggle: function (id, show) {
+                    if (show === undefined) show = true;
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    el.classList.toggle('show', show);
+                    document.body.style.overflow = show ? 'hidden' : '';
+                },
+
+                close: function (id) {
+                    this.toggle(id, false);
+                },
+
+                open: function (id) {
+                    this.toggle(id, true);
+                }
+            };
+
+            // ============================================================
+            // DATA
+            // ============================================================
+            const DATA = {
+                services: [
+                    ['Corte da casa', 'R$ 50', 'Consulta, corte personalizado e acabamento com navalha.', '50 MIN'],
+                    ['Barba completa', 'R$ 35', 'Toalha quente, desenho, navalha e hidratação final.', '40 MIN'],
+                    ['Combo Norte', 'R$ 80', 'Nosso corte + barba completa para renovar tudo de uma vez.', '90 MIN'],
+                    ['Pezinho & contorno', 'R$ 35', 'Manutenção rápida para manter as linhas em ordem.', '20 MIN'],
+                    ['Corte juvenil', 'R$ 35', 'Para até 12 anos, com atenção e paciência extra.', '40 MIN'],
+                    ['Ritual premium', 'R$ 110', 'Corte, barba, tratamento facial e massagem relaxante.', '120 MIN']
+                ],
+                cuts: [
+                    ['Low fade', 'Gradiente baixo e acabamento natural', 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80'],
+                    ['French crop', 'Textura frontal e laterais limpas', 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80'],
+                    ['Social clássico', 'Elegância sem esforço', 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80'],
+                    ['Mid fade', 'Volume no topo com transição média', 'https://images.unsplash.com/photo-1517832606294-7b6ac1ffbe52?auto=format&fit=crop&w=800&q=80'],
+                    ['Buzz cut', 'Prático, limpo e marcante', 'https://images.unsplash.com/photo-1532710093739-9470acff878f?auto=format&fit=crop&w=800&q=80'],
+                    ['Undercut', 'Contraste definido e versátil', 'https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=800&q=80'],
+                    ['Pompadour', 'Volume clássico com presença', 'https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?auto=format&fit=crop&w=800&q=80'],
+                    ['Curly fade', 'Laterais precisas, textura livre', 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80'],
+                    ['Side part', 'Um clássico que nunca sai de cena', 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=800&q=80']
+                ],
+                products: [
+                    ['Pomada matte', 'Fixação média · 80g', 62, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
+                    ['Óleo para barba', 'Nutrição diária · 30ml', 54, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80'],
+                    ['Pente de bolso', 'Acetato italiano', 38, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80'],
+                    ['Navalhete Norte', 'Aço inoxidável', 79, 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80'],
+                    ['Shampoo diário', 'Limpeza suave · 250ml', 48, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
+                    ['Bálsamo pós-barba', 'Refrescância · 100ml', 46, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
+                    ['Pó texturizador', 'Volume seco · 20g', 58, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
+                    ['Escova modeladora', 'Cerdas naturais', 44, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80']
+                ]
+            };
+
+            // ============================================================
+            // RENDER SERVICES
+            // ============================================================
+            function renderServices() {
+                const grid = $('#serviceGrid');
+                if (!grid) return;
+                grid.innerHTML = DATA.services.map(function (s) {
+                    return '<article class="service">' +
+                        '<h3>' + s[0] + '<span class="price">' + s[1] + '</span></h3>' +
+                        '<p>' + s[2] + '</p>' +
+                        '<small>' + s[3] + '</small>' +
+                        '</article>';
+                }).join('');
+            }
+
+            // ============================================================
+            // RENDER CUTS
+            // ============================================================
+            let cutPage = 1;
+            const CUTS_PER_PAGE = 3;
+
+            function renderCuts() {
+                const grid = $('#cuts');
+                const pages = $('#pages');
+                if (!grid || !pages) return;
+
+                const start = (cutPage - 1) * CUTS_PER_PAGE;
+                const end = start + CUTS_PER_PAGE;
+                const items = DATA.cuts.slice(start, end);
+                const totalPages = Math.ceil(DATA.cuts.length / CUTS_PER_PAGE);
+
+                grid.innerHTML = items.map(function (c) {
+                    return '<article class="cut">' +
+                        '<img src="' + c[2] + '" alt="Corte ' + c[0] + '" loading="lazy">' +
+                        '<div class="cut-info">' +
+                        '<div><b>' + c[0] + '</b><br><span>' + c[1] + '</span></div>' +
+                        '<i data-lucide="arrow-up-right" size="18" color="#c96036"></i>' +
+                        '</div></article>';
+                }).join('');
+
+                pages.innerHTML = Array.from({ length: totalPages }, function (_, i) {
+                    return '<button class="page ' + (cutPage === i + 1 ? 'active' : '') +
+                        '" onclick="goToCutPage(' + (i + 1) + ')">' + (i + 1) + '</button>';
+                }).join('');
+
+                if (window.lucide) lucide.createIcons();
+            }
+
+            window.goToCutPage = function (n) {
+                cutPage = Math.max(1, Math.min(n, Math.ceil(DATA.cuts.length / CUTS_PER_PAGE)));
+                renderCuts();
+            };
+
+            // ============================================================
+            // RENDER PRODUCTS
+            // ============================================================
+            function renderProducts() {
+                const grid = $('#products');
+                if (!grid) return;
+
+                grid.innerHTML = DATA.products.map(function (p, i) {
+                    return '<article class="product">' +
+                        '<img src="' + p[3] + '" alt="' + p[0] + '" loading="lazy">' +
+                        '<small>' + p[1] + '</small>' +
+                        '<div>' +
+                        '<div><strong>' + p[0] + '</strong><br><span style="color:var(--muted);font-size:12px;">R$ ' +
+                        p[2].toFixed(2) + '</span></div>' +
+                        '<button class="add" onclick="addToCart(' + i + ')">+</button>' +
+                        '</div></article>';
+                }).join('');
+
+                if (window.lucide) lucide.createIcons();
+            }
+
+            // ============================================================
+            // CART SYSTEM
+            // ============================================================
+            let cart = [];
+
+            function loadCart() {
+                try {
+                    const saved = localStorage.getItem('norteCart');
+                    cart = saved ? JSON.parse(saved) : [];
+                } catch (e) {
+                    cart = [];
+                }
+                updateCartUI();
+            }
+
+            function saveCart() {
+                try {
+                    localStorage.setItem('norteCart', JSON.stringify(cart));
+                } catch (e) { }
+                updateCartUI();
+            }
+
+            function updateCartUI() {
+                const count = $('#count');
+                const items = $('#cartItems');
+                const total = $('#total');
+
+                if (count) {
+                    count.textContent = cart.length;
+                    count.style.display = cart.length > 0 ? 'grid' : 'none';
+                }
+
+                if (items) {
+                    if (cart.length === 0) {
+                        items.innerHTML = '<div class="empty"><p>Seu carrinho está vazio.</p></div>';
+                    } else {
+                        items.innerHTML = cart.map(function (p, i) {
+                            return '<div class="cart-item">' +
+                                '<span><strong>' + p[0] + '</strong><br><small>R$ ' + p[2].toFixed(2) +
+                                '</small></span>' +
+                                '<button class="add" onclick="removeFromCart(' + i + ')">×</button>' +
+                                '</div>';
+                        }).join('');
+                    }
+                }
+
+                if (total) {
+                    const sum = cart.reduce(function (acc, p) { return acc + p[2]; }, 0);
+                    total.textContent = 'R$ ' + sum.toFixed(2).replace('.', ',');
+                }
+
+                if (window.lucide) lucide.createIcons();
+            }
+
+            window.addToCart = function (i) {
+                if (i < 0 || i >= DATA.products.length) return;
+                cart.push(DATA.products[i]);
+                saveCart();
+                Toast.show(DATA.products[i][0] + ' adicionado ao carrinho', 'success');
+            };
+
+            window.removeFromCart = function (i) {
+                if (i < 0 || i >= cart.length) return;
+                cart.splice(i, 1);
+                saveCart();
+                Toast.show('Produto removido do carrinho', 'warning');
+            };
+
+            function checkout() {
+                if (cart.length === 0) {
+                    Toast.show('Adicione um produto antes de finalizar.', 'error');
+                    return;
+                }
+                const btn = $('#checkout');
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerHTML = 'Processando...';
+                }
+                setTimeout(function () {
+                    const total = cart.reduce(function (acc, p) { return acc + p[2]; }, 0);
+                    const count = cart.length;
+                    cart = [];
+                    saveCart();
+                    Modal.close('drawer');
+                    Toast.show('Pedido recebido! ' + count + ' produtos. Total: R$ ' + total.toFixed(2).replace('.',
+                        ','), 'success');
+                    if (btn) {
+                        btn.disabled = false;
+                        btn.innerHTML = 'Finalizar pedido';
+                    }
+                }, 1500);
+            }
+
+            // ============================================================
+            // CHAT SYSTEM
+            // ============================================================
+            const CHAT_RESPONSES = {
+                horario: 'Funcionamos de terça a sábado, das 09h às 20h. Aos sábados até as 18h.',
+                preco: 'Nossos serviços: Corte R$ 50 | Barba R$ 35 | Combo R$ 80 | Ritual Premium R$ 110',
+                agendamento: 'Você pode agendar pelo site na página de agendamento ou pelo telefone (11) 99999-9999.',
+                endereco: 'Estamos na Rua Harmonia, 241, Vila Madalena, São Paulo - SP.',
+                produto: 'Temos pomadas, óleos, shampoos, pentes e acessórios. Visite nossa loja online!',
+                default: 'Obrigado pela mensagem! Em breve nossa equipe responderá. Posso ajudar com horários, preços, agendamento ou endereço?'
+            };
+
+            function processChatMessage(message) {
+                const msg = message.toLowerCase().trim();
+                if (msg.includes('horário') || msg.includes('horario') || msg.includes('funciona') || msg.includes(
+                    'abre')) {
+                    return CHAT_RESPONSES.horario;
+                }
+                if (msg.includes('preço') || msg.includes('preco') || msg.includes('valor') || msg.includes('custa')) {
+                    return CHAT_RESPONSES.preco;
+                }
+                if (msg.includes('agendar') || msg.includes('marcar') || msg.includes('reservar')) {
+                    return CHAT_RESPONSES.agendamento;
+                }
+                if (msg.includes('endereço') || msg.includes('endereco') || msg.includes('onde') || msg.includes('local')) {
+                    return CHAT_RESPONSES.endereco;
+                }
+                if (msg.includes('produto') || msg.includes('loja') || msg.includes('comprar') || msg.includes('pomada')) {
+                    return CHAT_RESPONSES.produto;
+                }
+                return CHAT_RESPONSES.default;
+            }
+
+            function sendChatMessage(message) {
+                const chat = $('#chat');
+                if (!chat) return;
+                const cleanMsg = message.trim();
+                if (!cleanMsg) return;
+
+                const userBubble = document.createElement('div');
+                userBubble.className = 'bubble user';
+                userBubble.textContent = cleanMsg;
+                chat.appendChild(userBubble);
+                chat.scrollTop = chat.scrollHeight;
+
+                const response = processChatMessage(cleanMsg);
+                setTimeout(function () {
+                    const botBubble = document.createElement('div');
+                    botBubble.className = 'bubble';
+                    botBubble.textContent = response;
+                    chat.appendChild(botBubble);
+                    chat.scrollTop = chat.scrollHeight;
+                }, 400);
+            }
+
+            function handleChatSubmit(e) {
+                e.preventDefault();
+                const input = $('#chatMessage');
+                if (!input) return;
+                const message = input.value.trim();
+                if (message) {
+                    sendChatMessage(message);
+                    input.value = '';
+                }
+            }
+
+            function setupSuggestions() {
+                $$('.suggestion-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        const msg = this.getAttribute('data-msg');
+                        if (msg) {
+                            sendChatMessage(msg);
+                        }
+                    });
+                });
+            }
+
+            // ============================================================
+            // LOGIN SYSTEM
+            // ============================================================
+            function handleLogin(e) {
+                e.preventDefault();
+                const name = $('#loginName');
+                const email = $('#loginEmail');
+                if (!name || !email) return;
+
+                if (!name.value.trim()) {
+                    Toast.show('Por favor, informe seu nome.', 'error');
+                    name.focus();
+                    return;
+                }
+                if (!email.value.trim() || !email.value.includes('@')) {
+                    Toast.show('Por favor, informe um e-mail válido.', 'error');
+                    email.focus();
+                    return;
+                }
+
+                const user = { name: name.value.trim(), email: email.value.trim() };
+                try {
+                    localStorage.setItem('norteUser', JSON.stringify(user));
+                    const form = $('#loginForm');
+                    const success = $('#loginSuccess');
+                    const welcome = $('#welcome');
+                    if (form) form.style.display = 'none';
+                    if (success) success.style.display = 'block';
+                    if (welcome) welcome.textContent = 'Bem-vindo de volta, ' + user.name + '!';
+                    Toast.show('Login realizado com sucesso!', 'success');
+                    setTimeout(function () {
+                        Modal.close('loginLayer');
+                        if (form) form.style.display = 'block';
+                        if (success) success.style.display = 'none';
+                        name.value = '';
+                        email.value = '';
+                    }, 2000);
+                } catch (err) {
+                    Toast.show('Erro ao fazer login.', 'error');
+                }
+            }
+
+            // ============================================================
+            // BOOKING SYSTEM
+            // ============================================================
+            function setDateMin() {
+                const dateInput = $('#bookDate');
+                if (dateInput) {
+                    const today = new Date();
+                    const y = today.getFullYear();
+                    const m = String(today.getMonth() + 1).padStart(2, '0');
+                    const d = String(today.getDate()).padStart(2, '0');
+                    dateInput.min = y + '-' + m + '-' + d;
+                    if (!dateInput.value) dateInput.value = y + '-' + m + '-' + d;
+                }
+            }
+
+            function handleBooking(e) {
+                e.preventDefault();
+                const name = $('#bookName');
+                const date = $('#bookDate');
+                const time = $('#bookTime');
+                const service = $('#bookService');
+
+                if (!name.value.trim()) {
+                    Toast.show('Por favor, informe seu nome.', 'error');
+                    name.focus();
+                    return;
+                }
+                if (!date.value) {
+                    Toast.show('Por favor, selecione uma data.', 'error');
+                    date.focus();
+                    return;
+                }
+
+                const appointment = {
+                    name: name.value.trim(),
+                    service: service ? service.value : 'Corte da casa',
+                    date: date.value,
+                    time: time ? time.value : '09:00'
+                };
+
+                try {
+                    const saved = localStorage.getItem('norteAppointments');
+                    const all = saved ? JSON.parse(saved) : [];
+                    all.push(appointment);
+                    localStorage.setItem('norteAppointments', JSON.stringify(all));
+                    Toast.show('Agendamento confirmado para ' + date.value + ' às ' + time.value, 'success');
+                    e.target.reset();
+                    setDateMin();
+                    Modal.close('bookingLayer');
+                } catch (err) {
+                    Toast.show('Erro ao agendar. Tente novamente.', 'error');
+                }
+            }
+
+            // ============================================================
+            // SCROLL TO TOP
+            // ============================================================
+            function setupScrollTop() {
+                const btn = $('#scrollTop');
+                if (!btn) return;
+                window.addEventListener('scroll', function () {
+                    btn.classList.toggle('visible', window.scrollY > 400);
+                });
+                btn.addEventListener('click', function () {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // ============================================================
+            // OPEN BOOKING
+            // ============================================================
+            window.openBooking = function () {
+                setDateMin();
+                Modal.open('bookingLayer');
+            };
+
+            // ============================================================
+            // CHECK LOGIN STATUS
+            // ============================================================
+            function checkLoginStatus() {
+                try {
+                    const user = JSON.parse(localStorage.getItem('norteUser') || 'null');
+                    const loginBtn = $('#loginBtn');
+                    if (loginBtn && user) {
+                        loginBtn.textContent = user.name || 'Minha conta';
+                        loginBtn.onclick = function (e) {
+                            e.preventDefault();
+                            if (confirm('Deseja sair da conta, ' + user.name + '?')) {
+                                localStorage.removeItem('norteUser');
+                                window.location.reload();
+                            }
+                        };
+                    }
+                } catch (e) { }
+            }
+
+            // ============================================================
+            // SETUP EVENT LISTENERS
+            // ============================================================
+            function setupEventListeners() {
+                // Login
+                const loginBtn = $('#loginBtn');
+                if (loginBtn) {
+                    loginBtn.addEventListener('click', function () {
+                        Modal.open('loginLayer');
+                    });
+                }
+
+                const loginForm = $('#loginForm');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', handleLogin);
+                }
+
+                // Support
+                const supportBtn = $('#supportBtn');
+                if (supportBtn) {
+                    supportBtn.addEventListener('click', function () {
+                        Modal.open('supportLayer');
+                    });
+                }
+
+                const supportForm = $('#supportForm');
+                if (supportForm) {
+                    supportForm.addEventListener('submit', handleChatSubmit);
+                }
+
+                const chatInput = $('#chatMessage');
+                if (chatInput) {
+                    chatInput.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const form = $('#supportForm');
+                            if (form) form.dispatchEvent(new Event('submit'));
+                        }
+                    });
+                }
+                setupSuggestions();
+
+                // Cart
+                const cartBtn = $('#cartBtn');
+                if (cartBtn) {
+                    cartBtn.addEventListener('click', function () {
+                        Modal.open('drawer');
+                        updateCartUI();
+                    });
+                }
+
+                const checkoutBtn = $('#checkout');
+                if (checkoutBtn) {
+                    checkoutBtn.addEventListener('click', checkout);
+                }
+
+                // Close modals
+                $$('[data-close]').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        Modal.close(this.getAttribute('data-close'));
+                    });
+                });
+
+                // Click outside
+                $$('.layer, .drawer').forEach(function (el) {
+                    el.addEventListener('click', function (e) {
+                        if (e.target === this) {
+                            Modal.close(this.id);
+                        }
+                    });
+                });
+
+                // Escape key
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        $$('.layer.show, .drawer.show').forEach(function (el) {
+                            Modal.close(el.id);
+                        });
+                    }
+                });
+
+                // Booking
+                const bookingForm = $('#bookingForm');
+                if (bookingForm) {
+                    bookingForm.addEventListener('submit', handleBooking);
+                }
+                setDateMin();
+
+                checkLoginStatus();
+            }
+
+            // ============================================================
+            // EXPOSE GLOBALLY (para onclick inline)
+            // ============================================================
+            window.addToCart = addToCart;
+            window.removeFromCart = removeFromCart;
+            window.goToCutPage = goToCutPage;
+            window.openBooking = openBooking;
+            window.Toast = Toast;
+            window.Modal = Modal;
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                Theme.init();
+                renderServices();
+                renderCuts();
+
+                if ($('#products')) {
+                    renderProducts();
+                }
+
+                loadCart();
+                setupScrollTop();
+                setupEventListeners();
+
+                if (window.lucide) lucide.createIcons();
+
+                console.log('🚀 Norte Barbearia iniciada com sucesso!');
+                console.log('🌓 Tema: ' + document.documentElement.getAttribute('data-theme'));
+            }
+
+            // === START ===
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+
+</html>
