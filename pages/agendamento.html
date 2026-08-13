@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../styles.css">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -30,11 +30,11 @@
                     <li><a href="produtos.html">Loja</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                    <button class="icon" id="cartBtn" aria-label="Carrinho" onclick="window.location.href='produtos.html'">
                         <i data-lucide="shopping-bag" size="19"></i>
                         <span class="count" id="count">0</span>
                     </button>
-                    <button class="btn ghost" id="loginBtn">Entrar</button>
+                    <a class="btn ghost" id="loginBtn" href="login.html">Entrar</a>
                     <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
                 </div>
             </nav>
@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                 </div>
-                <form class="form" id="booking">
+                <form class="form" id="bookingForm">
                     <div class="field">
                         <label for="bookName">Seu nome</label>
                         <input id="bookName" type="text" required placeholder="Como podemos te chamar?">
@@ -137,7 +137,7 @@
 
     <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
-    <script src="../js/script.js"></script>
+    <script src="../script.js"></script>
 
 </body>
 
