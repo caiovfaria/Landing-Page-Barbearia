@@ -19,8 +19,6 @@ Landing-Page-Barbearia/
 
 `index.html`, `styles.css` e `script.js` precisam ficar **na mesma pasta** (raiz do projeto), pois `index.html` referencia os outros dois via caminho relativo.
 
-> ⚠️ **As páginas em `pages/` estão com caminhos quebrados** — veja a seção [Notas conhecidas](#-notas-conhecidas).
-
 ## 🚀 Como rodar
 
 Não há build nem dependências para instalar. Basta abrir o `index.html` no navegador:
