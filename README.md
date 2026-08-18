@@ -1,143 +1,218 @@
-# Norte | Barbearia & Clube
+# Norte Barbearia — site comercial estático
 
-Site institucional de página única (one-page) para a barbearia Norte, com catálogo de produtos, carrinho local e interface de solicitação de agendamento.
+Projeto demonstrativo de site institucional e catálogo comercial para uma barbearia de pequeno porte. A aplicação usa somente HTML, CSS e JavaScript vanilla e foi preparada para hospedagem estática.
 
-## 📁 Estrutura do projeto
+O produto permite apresentar a marca, serviços, cortes e produtos, além de montar solicitações de agendamento e pedido que são encaminhadas ao WhatsApp. O envio é uma solicitação: não existe confirmação automática, pagamento ou reserva de horário.
 
-```
+## Objetivo do projeto
+
+- oferecer uma presença digital profissional e responsiva;
+- apresentar serviços e produtos de forma organizada;
+- facilitar o contato comercial pelo WhatsApp;
+- funcionar sem backend, build ou dependências instaláveis;
+- servir como base configurável para um cliente real.
+
+## Funcionalidades implementadas
+
+- home institucional com história, serviços, cortes e catálogo;
+- página dedicada de produtos com paginação;
+- carrinho com quantidades, subtotal, total de itens e valor total;
+- persistência validada do carrinho em `localStorage`;
+- solicitação de pedido pelo WhatsApp;
+- formulário de solicitação de agendamento com validação, resumo, profissionais, serviços, data e horário;
+- menu mobile acessível;
+- tema claro/escuro persistido em `localStorage`;
+- modal e drawer com foco contido, Escape e retorno de foco;
+- skip links, landmarks, labels, mensagens de erro e estados ARIA;
+- metadados técnicos, Open Graph básico, Twitter Card, JSON-LD, favicon, robots e sitemap;
+- página `404.html` compatível com hospedagem estática;
+- layout responsivo para celular, tablet e desktop.
+
+## O que não existe nesta versão
+
+- login ou área do cliente;
+- backend ou banco de dados;
+- agenda com disponibilidade em tempo real;
+- reserva ou confirmação automática de horário;
+- pagamento online;
+- controle de estoque;
+- cálculo de frete;
+- painel administrativo;
+- analytics.
+
+Pedidos e horários somente são solicitados. Disponibilidade, confirmação, pagamento e retirada ou entrega são combinados diretamente com a barbearia pelo WhatsApp.
+
+## Stack
+
+- HTML5 semântico;
+- CSS3 com variáveis, Grid, Flexbox e media queries;
+- JavaScript vanilla;
+- Lucide Icons 1.28.0 via CDN;
+- Google Fonts: DM Sans, DM Mono e Playfair Display;
+- imagens demonstrativas remotas da Unsplash.
+
+Não há framework, bundler, gerenciador de pacotes ou etapa de build.
+
+## Estrutura de arquivos
+
+```text
 Landing-Page-Barbearia/
-├── .gitignore
-├── LICENSE
-├── favicon.svg        # Favicon simples derivado da marca visual
-├── index.html          # Página principal (one-page: hero, serviços, cortes, loja...)
-├── robots.txt          # Regras públicas de rastreamento
-├── sitemap.xml         # Mapa das três páginas públicas; exige domínio antes do deploy
-├── styles.css          # Todos os estilos (light/dark mode e responsivo)
-├── script.js           # Toda a lógica e interatividade da página principal
+├── 404.html                 # Página de erro para hospedagem estática
+├── favicon.svg              # Favicon derivado da marca visual
+├── index.html               # Home, serviços, cortes, loja, modal e carrinho
+├── README.md                # Documentação técnica e comercial
+├── robots.txt               # Regras públicas de rastreamento
+├── script.js                # Dados, tema, navegação, carrinho e agendamento
+├── sitemap.xml              # Home, produtos e agendamento
+├── styles.css               # Identidade visual e responsividade
 └── pages/
-    ├── agendamento.html
-    └── produtos.html
+    ├── agendamento.html     # Solicitação dedicada de horário
+    └── produtos.html        # Catálogo e carrinho
 ```
 
-`index.html`, `styles.css` e `script.js` precisam ficar **na mesma pasta** (raiz do projeto), pois `index.html` referencia os outros dois via caminho relativo.
+## Como executar localmente
 
-## 🚀 Como rodar
+O projeto pode ser aberto diretamente pelo `index.html`, mas um servidor HTTP local representa melhor o ambiente de publicação.
 
-Não há build nem dependências para instalar. Basta abrir o `index.html` no navegador:
+Com Python:
 
-- **Direto**: dê duplo clique em `index.html`, ou
-- **Servidor local** (recomendado, evita eventuais bloqueios de CORS do navegador):
-  ```bash
-  cd norte
-  python3 -m http.server 8000
-  ```
-  Depois acesse `http://localhost:8000`.
+```bash
+python -m http.server 8000
+```
 
-## 🧩 Seções da página
+Depois, acesse `http://localhost:8000/index.html`.
 
-| Seção | Descrição |
+Não é necessário instalar dependências.
+
+## Configuração rápida
+
+### Nome e WhatsApp
+
+No início de `script.js`:
+
+```js
+const BUSINESS_CONFIG = {
+    name: 'Norte Barbearia',
+    whatsapp: '5511999999999'
+};
+```
+
+- `name`: nome usado nas mensagens de agendamento e pedido;
+- `whatsapp`: código do país, DDD e número, somente com dígitos e sem `+`, espaços ou pontuação.
+
+Exemplo estrutural: `55` + DDD + número.
+
+### Dados comerciais que precisam ser substituídos
+
+Quando existir um cliente real, revise todos estes pontos:
+
+| Dado | Onde alterar |
 |---|---|
-| Header | Navegação, alternância de tema, carrinho e agendamento |
-| Hero | Chamada principal com foto e selo de avaliação |
-| Ticker | Faixa animada com frases institucionais |
-| História | Texto sobre a barbearia + anos de atuação |
-| Serviços | Cards de serviços (Corte, Barba, Combo, Ritual premium) |
-| Cortes | Galeria de inspirações de cortes |
-| Depoimento | Citação de cliente |
-| Loja | Grade de 20 produtos com paginação (8 por página) |
-| Footer | Contato, endereço e horários |
+| Nome da barbearia | `BUSINESS_CONFIG`, títulos, metadados, JSON-LD, header, rodapés e textos institucionais |
+| WhatsApp | `BUSINESS_CONFIG.whatsapp` |
+| Telefone visível | links `tel:` e textos dos rodapés nas três páginas |
+| E-mail | links `mailto:` dos rodapés |
+| Endereço e cidade | rodapés, textos locais, metadados e JSON-LD da home |
+| Horários | rodapés, página de agendamento e `openingHoursSpecification` no JSON-LD |
+| Barbeiros | array `BARBERS` em `script.js` |
+| Serviços e preços | array `SERVICES` e catálogo de ofertas do JSON-LD |
+| Horários solicitáveis | array `BOOKING_TIMES` em `script.js` |
+| Produtos | array `ALL_PRODUCTS` em `script.js` |
+| Textos institucionais | `index.html` e páginas internas |
+| Domínio | canonical, Open Graph, JSON-LD, sitemap e robots |
+| Instagram e redes sociais | não existem links demonstrativos; adicione somente URLs reais fornecidas pelo cliente |
+| Imagens | hero, história, cortes, produtos e futura imagem social |
 
-## 📄 Páginas internas (`pages/`)
+Os dados atuais são demonstrativos e não devem ser apresentados como dados de um estabelecimento real sem revisão.
 
-Além da página principal, o projeto tem 2 páginas avulsas que reaproveitam os mesmos estilos e reforçam fluxos específicos:
+## Imagens
 
-| Página | Descrição |
-|---|---|
-| `pages/agendamento.html` | Página dedicada com a mesma interface de solicitação da home (serviço, barbeiro, data e horário), preparada para uma integração futura. |
-| `pages/produtos.html` | Página de catálogo isolada — grade de produtos (`#productsGrid`), paginação (`#pagination`) e drawer de carrinho. |
+As imagens atuais são remotas e demonstrativas. Para uso comercial, o cliente deve fornecer imagens próprias ou devidamente licenciadas.
 
-As duas referenciam `../index.html` para voltar à home e reutilizam o header/footer do site.
+Pontos de substituição:
 
-Os caminhos de `styles.css`/`script.js` e os IDs de produtos/paginação/formulário dessas páginas foram corrigidos para bater com o `script.js` compartilhado — veja o changelog abaixo.
+- hero: imagem principal em `index.html`;
+- história: `background` de `.story-image` em `styles.css`;
+- cortes: array `DATA_C` dentro de `renderCuts()` em `script.js`;
+- produtos: propriedade `image` dos objetos de `ALL_PRODUCTS`;
+- imagem social: ainda não existe.
 
-## ⚙️ Funcionalidades (JavaScript)
+Para compartilhamento social, recomenda-se criar uma imagem de 1200 × 630 px. Depois, adicione `og:image` e `twitter:image` com uma URL HTTPS absoluta. Não configure essas metatags antes de o arquivo existir.
 
-- **Tema claro/escuro** — persistido em `localStorage`, detecta preferência do sistema na primeira visita.
-- **Carrinho de pedidos** — quantidades, subtotais e total, persistência validada em `localStorage` e envio da solicitação pelo WhatsApp.
-- **Loja paginada** — 20 produtos, 8 por página, navegação por botões numerados.
-- **Solicitação de agendamento** — formulário compartilhado entre home e página interna, com resumo, validação e envio da solicitação pelo WhatsApp.
-- **Toasts** — notificações temporárias de sucesso/erro/aviso.
-- **Scroll to top** — botão flutuante para voltar ao topo.
-- **Acessibilidade** — skip link, `aria-*` em modais e regiões, fechar modais com `Esc`.
+## SEO e domínio
 
-> ⚠️ Este projeto é **front-end apenas**: agendamentos e pedidos abrem o WhatsApp com mensagens prontas, mas dependem de confirmação da barbearia. Não há pagamento ou reserva automática.
+As páginas possuem titles, descriptions, Open Graph básico, Twitter Card, canonical relativo e JSON-LD `HairSalon` na home.
 
-## 🎨 Customização rápida
+Como ainda não existe domínio definitivo:
 
-- **Cores e variáveis**: topo do `styles.css`, dentro de `:root` (e `[data-theme="dark"]` para o modo escuro).
-- **Produtos da loja**: array de objetos `ALL_PRODUCTS` em `script.js`, com `id`, `name`, `description`, `price` e `image`.
-- **Nome e WhatsApp usados nas mensagens**: propriedades `name` e `whatsapp` em `BUSINESS_CONFIG`, no início de `script.js`. O telefone deve conter código do país e DDD, somente com números, por exemplo `5511999999999`.
-- **Serviços exibidos e disponíveis para agendamento**: array `SERVICES` em `script.js`.
-- **Profissionais**: array `BARBERS` em `script.js`.
-- **Horários para solicitação**: array `BOOKING_TIMES` em `script.js`.
-- **Cortes exibidos**: array `DATA_C` dentro de `renderCuts()` em `script.js`.
-- **Itens por página da loja**: constante `ITEMS_PER_PAGE` em `script.js`.
+- canonical, `og:url`, `@id` e `url` do JSON-LD usam caminhos relativos compatíveis com publicação em subdiretório;
+- `sitemap.xml` usa `https://dominio-a-definir.invalid` como marcador reservado e não publicável;
+- a diretiva `Sitemap:` permanece comentada em `robots.txt`.
 
-## 🔎 Configuração comercial e SEO antes da publicação
+Antes da publicação em domínio real:
 
-Os dados atuais da Norte são exemplos do projeto. Para um cliente real, revise conjuntamente:
+1. substitua canonical e `og:url` por URLs HTTPS absolutas;
+2. atualize `@id` e `url` do JSON-LD em `index.html`;
+3. substitua todas as ocorrências de `https://dominio-a-definir.invalid` no sitemap;
+4. descomente e ajuste a URL absoluta do sitemap em `robots.txt`;
+5. adicione a imagem social somente depois de criar o arquivo;
+6. valide novamente metadados, JSON-LD e sitemap no endereço publicado.
 
-1. `BUSINESS_CONFIG`, serviços, profissionais, produtos e horários em `script.js`;
-2. nome, telefone, endereço e horários nos rodapés das três páginas;
-3. textos de `title`, description e Open Graph no `head` de cada página;
-4. JSON-LD `HairSalon` no `head` de `index.html`, incluindo telefone, endereço, horários, serviços e preços.
+O `sitemap.xml` lista somente:
 
-### Domínio, canonical, Open Graph, sitemap e robots
+- home;
+- produtos;
+- agendamento.
 
-Ainda não há domínio definitivo configurado. Por isso, os canonicals e `og:url` usam caminhos relativos (`/`, `/pages/produtos.html` e `/pages/agendamento.html`) em vez de inventar um domínio. Eles são resolvidos pelo endereço real da publicação, mas URLs absolutas são preferíveis para compartilhamento social.
+A página 404 não é indexável e não entra no sitemap.
 
-Quando o domínio for definido:
+## Favicon
 
-1. troque os valores relativos de `canonical`, `og:url`, `@id` e `url` do JSON-LD por URLs HTTPS absolutas;
-2. substitua todas as ocorrências de `https://dominio-a-definir.invalid` em `sitemap.xml` pelo domínio público, sem barra duplicada;
-3. descomente e atualize a linha `Sitemap:` de `robots.txt` com a URL absoluta do sitemap;
-4. valide novamente o sitemap e os dados estruturados no ambiente publicado.
+`favicon.svg` já está referenciado nas páginas públicas e na 404. Ele é um favicon simples derivado da marca demonstrativa. Substitua-o caso o cliente forneça uma identidade visual definitiva.
 
-O domínio `.invalid` do sitemap é um marcador reservado e intencionalmente não publicável. O arquivo precisa ser configurado antes do deploy.
+## Hospedagem estática e GitHub Pages
 
-### Imagem social
+Os assets e links de navegação usam caminhos relativos, inclusive nas páginas internas e na 404, permitindo publicação em subdiretórios como os usados pelo GitHub Pages.
 
-Não existe uma imagem social própria no repositório, portanto nenhuma referência `og:image` ou `twitter:image` foi adicionada. Antes da publicação comercial:
+Para publicar corretamente:
 
-1. crie uma imagem própria/licenciada, preferencialmente em 1200 × 630 px;
-2. salve-a em um caminho estável, por exemplo `assets/social-share.jpg`;
-3. adicione `og:image` e `twitter:image` com a URL HTTPS absoluta do arquivo em cada página.
+- mantenha a estrutura de pastas;
+- publique a raiz do repositório como diretório do site;
+- não mova `pages/`, `styles.css`, `script.js` ou `favicon.svg` sem atualizar as referências;
+- configure o domínio e o sitemap antes de liberar indexação comercial;
+- confirme que o provedor utiliza `404.html` como página de erro.
 
-Não aponte essas metatags para um arquivo que ainda não exista.
+Não há configuração de deploy automatizado neste repositório.
 
-### Imagens comerciais
+## Armazenamento local
 
-As imagens atuais são carregadas remotamente da Unsplash e funcionam como conteúdo de demonstração. Um projeto comercial deve substituí-las por fotos próprias ou devidamente licenciadas, mantendo dimensões e proporções adequadas para evitar mudanças de layout.
+O navegador utiliza:
 
-## 🛠️ Tecnologias
+- `norteTheme`: preferência de tema;
+- `norteCart`: itens e quantidades do carrinho.
 
-- HTML5 semântico
-- CSS3 (variáveis, grid, flexbox, media queries)
-- JavaScript puro (vanilla, sem frameworks)
-- [Lucide Icons](https://lucide.dev/) 1.28.0 via CDN, com versão fixada
-- Google Fonts: DM Sans, DM Mono, Playfair Display
+O carrinho restaurado é validado contra o catálogo atual. Registros inválidos são ignorados para evitar que dados antigos quebrem a aplicação.
 
-## 📌 Notas conhecidas
+## Acessibilidade
 
-- Pedidos não consultam estoque, pagamento, retirada ou entrega; esses detalhes são confirmados manualmente no WhatsApp.
-- A solicitação de agendamento não consulta disponibilidade real e não reserva horários automaticamente.
-- O projeto é estático: não possui backend, painel administrativo, disponibilidade em tempo real, pagamento, estoque ou confirmação automática.
-- Metadados sociais não incluem imagem até que um asset comercial próprio seja criado.
-- O sitemap não deve ser publicado enquanto o domínio `.invalid` não for substituído.
+O projeto inclui:
 
-## 🔐 Segurança na hospedagem
+- navegação por teclado;
+- foco visível;
+- skip links;
+- um `h1` e um `main` por página;
+- labels e erros associados aos campos;
+- nomes acessíveis nos controles do carrinho;
+- foco contido em modal e drawer;
+- fechamento com Escape e retorno ao acionador;
+- estados `aria-expanded`, `aria-hidden` e `aria-current`;
+- regiões ao vivo com prioridade moderada.
 
-Headers HTTP não podem ser definidos de forma confiável apenas pelos arquivos HTML. Na hospedagem final, configure e teste pelo provedor, conforme os recursos externos realmente utilizados:
+Uma auditoria comercial definitiva ainda deve incluir testes em leitores de tela e navegadores usados pelo público do cliente.
+
+## Segurança na hospedagem
+
+Headers HTTP não são definidos pelos arquivos HTML. No provedor final, configure e teste conforme os recursos externos utilizados:
 
 - `Content-Security-Policy`;
 - `Strict-Transport-Security` após habilitar HTTPS;
@@ -145,8 +220,27 @@ Headers HTTP não podem ser definidos de forma confiável apenas pelos arquivos 
 - `Referrer-Policy`;
 - `Permissions-Policy`.
 
-Não foi adicionada uma meta CSP, pois uma política rígida sem configuração do servidor poderia bloquear Google Fonts, Lucide, Unsplash e WhatsApp.
+Não foi adicionada uma meta CSP rígida porque ela poderia bloquear Google Fonts, Lucide, Unsplash e WhatsApp sem configuração adequada da hospedagem.
+
+## Possíveis evoluções com backend
+
+Estas possibilidades não fazem parte da versão atual:
+
+- agenda com disponibilidade real e confirmação automática;
+- painel administrativo;
+- autenticação de equipe ou clientes;
+- estoque e gestão de produtos;
+- pagamento online;
+- histórico de pedidos;
+- integração com CRM, e-mail ou notificações;
+- armazenamento centralizado das configurações comerciais.
+
+Qualquer evolução desse tipo exige definição de requisitos, segurança, privacidade e infraestrutura próprias.
+
+## Licença
+
+Consulte o arquivo `LICENSE` antes de reutilizar ou comercializar o código.
 
 ---
 
-Feito para bons dias e bons cortes. © 2026 Norte Barbearia
+Projeto demonstrativo Norte Barbearia. Feito para bons dias e bons cortes.
