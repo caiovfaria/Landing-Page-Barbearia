@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Após definir o domínio público, adicione aqui a URL absoluta do sitemap:
-# Sitemap: https://dominio-a-definir.invalid/sitemap.xml
+Sitemap: https://caiovfaria.github.io/Landing-Page-Barbearia/sitemap.xml

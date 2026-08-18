@@ -4,6 +4,8 @@ Projeto demonstrativo de site institucional e catálogo comercial para uma barbe
 
 O produto permite apresentar a marca, serviços, cortes e produtos, além de montar solicitações de agendamento e pedido que são encaminhadas ao WhatsApp. O envio é uma solicitação: não existe confirmação automática, pagamento ou reserva de horário.
 
+Demo pública: https://caiovfaria.github.io/Landing-Page-Barbearia/
+
 ## Objetivo do projeto
 
 - oferecer uma presença digital profissional e responsiva;
@@ -141,22 +143,16 @@ Para compartilhamento social, recomenda-se criar uma imagem de 1200 × 630 px. D
 
 ## SEO e domínio
 
-As páginas possuem titles, descriptions, Open Graph básico, Twitter Card, canonical relativo e JSON-LD `HairSalon` na home.
+As páginas possuem titles, descriptions, Open Graph básico, Twitter Card, canonical absoluto e JSON-LD `HairSalon` na home. As URLs de produção atuais usam a base pública da demonstração no GitHub Pages: `https://caiovfaria.github.io/Landing-Page-Barbearia/`.
 
-Como ainda não existe domínio definitivo:
+Ao vender ou publicar o projeto para um cliente com domínio próprio:
 
-- canonical, `og:url`, `@id` e `url` do JSON-LD usam caminhos relativos compatíveis com publicação em subdiretório;
-- `sitemap.xml` usa `https://dominio-a-definir.invalid` como marcador reservado e não publicável;
-- a diretiva `Sitemap:` permanece comentada em `robots.txt`.
-
-Antes da publicação em domínio real:
-
-1. substitua canonical e `og:url` por URLs HTTPS absolutas;
+1. substitua canonical e `og:url` pelo domínio HTTPS definitivo;
 2. atualize `@id` e `url` do JSON-LD em `index.html`;
-3. substitua todas as ocorrências de `https://dominio-a-definir.invalid` no sitemap;
-4. descomente e ajuste a URL absoluta do sitemap em `robots.txt`;
+3. atualize todas as URLs de `sitemap.xml`;
+4. atualize a diretiva `Sitemap:` em `robots.txt`;
 5. adicione a imagem social somente depois de criar o arquivo;
-6. valide novamente metadados, JSON-LD e sitemap no endereço publicado.
+6. valide novamente metadados, JSON-LD, sitemap e robots no endereço definitivo.
 
 O `sitemap.xml` lista somente:
 
@@ -172,7 +168,9 @@ A página 404 não é indexável e não entra no sitemap.
 
 ## Hospedagem estática e GitHub Pages
 
-Os assets e links de navegação usam caminhos relativos, inclusive nas páginas internas e na 404, permitindo publicação em subdiretórios como os usados pelo GitHub Pages.
+A demonstração pública está hospedada pelo GitHub Pages em https://caiovfaria.github.io/Landing-Page-Barbearia/.
+
+Os assets e links de navegação usam caminhos relativos, inclusive nas páginas internas e na 404, permitindo a publicação no subdiretório do projeto no GitHub Pages.
 
 Para publicar corretamente:
 
