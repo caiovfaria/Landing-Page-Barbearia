@@ -267,8 +267,7 @@
             ['French crop', 'Textura frontal', 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80'],
             ['Social clássico', 'Elegância', 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80']
         ];
-        grid.innerHTML = DATA_C.map(c => `<article class="cut"><img src="${c[2]}" alt="${c[0]}" loading="lazy"><div class="cut-info"><div><b>${c[0]}</b><br><span>${c[1]}</span></div><i data-lucide="arrow-up-right" size="18" color="#c96036"></i></div></article>`).join('');
-        if (window.lucide) lucide.createIcons();
+        grid.innerHTML = DATA_C.map(c => `<article class="cut"><img src="${c[2]}" alt="${c[0]}" loading="lazy" decoding="async"><div class="cut-info"><div><b>${c[0]}</b><br><span>${c[1]}</span></div><i data-lucide="arrow-up-right" size="18" color="#c96036"></i></div></article>`).join('');
     }
 
     // ============================================================
@@ -292,7 +291,7 @@
         const totalPages = Math.ceil(data.total / ITEMS_PER_PAGE);
 
         grid.innerHTML = data.items.map(product => {
-            return `<article class="product"><img src="${product.image}" alt="${product.name}" loading="lazy"><small>${product.description}</small><div><div><strong>${product.name}</strong><br><span style="color:var(--muted);font-size:12px;">${CURRENCY_FORMATTER.format(product.price)}</span></div><button class="add" type="button" data-product-id="${product.id}" aria-label="Adicionar ${product.name} ao carrinho">+</button></div></article>`;
+            return `<article class="product"><img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async"><small>${product.description}</small><div><div><strong>${product.name}</strong><br><span style="color:var(--muted);font-size:12px;">${CURRENCY_FORMATTER.format(product.price)}</span></div><button class="add" type="button" data-product-id="${product.id}" aria-label="Adicionar ${product.name} ao carrinho">+</button></div></article>`;
         }).join('');
 
         // Paginação
@@ -302,7 +301,6 @@
             return `<button class="page-btn ${current ? 'active' : ''}" type="button" data-page="${num}" aria-label="Ir para página ${num} de produtos"${current ? ' aria-current="page"' : ''}>${num}</button>`;
         }).join('');
 
-        if (window.lucide) lucide.createIcons();
     }
 
     function goToPage(page) {
@@ -426,7 +424,6 @@
         if (totalItems) totalItems.textContent = totals.quantity;
         if (total) total.textContent = CURRENCY_FORMATTER.format(totals.value);
         if (checkout) checkout.disabled = cart.length === 0;
-        if (window.lucide) lucide.createIcons();
     }
 
     function addToCart(productId) {

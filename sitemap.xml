@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Substitua https://dominio-a-definir.invalid pelo domínio público antes do deploy. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://dominio-a-definir.invalid/</loc>
+    </url>
+    <url>
+        <loc>https://dominio-a-definir.invalid/pages/produtos.html</loc>
+    </url>
+    <url>
+        <loc>https://dominio-a-definir.invalid/pages/agendamento.html</loc>
+    </url>
+</urlset>

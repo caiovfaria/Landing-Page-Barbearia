@@ -4,17 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Norte Barbearia: cortes precisos e bons momentos.">
-    <title>Norte | Barbearia & Clube</title>
+    <meta name="description"
+        content="Norte Barbearia em Vila Madalena, São Paulo: cortes, barba, serviços e produtos, com solicitações pelo WhatsApp.">
+    <title>Norte Barbearia em Vila Madalena, São Paulo | Cortes e Barba</title>
+
+    <link rel="canonical" href="/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="Norte Barbearia em Vila Madalena, São Paulo">
+    <meta property="og:description"
+        content="Cortes, barba, serviços e produtos com solicitações de agendamento e pedido pelo WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:locale" content="pt_BR">
+    <!-- Adicione og:image somente após criar a imagem social e configurar sua URL absoluta. -->
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Norte Barbearia em Vila Madalena, São Paulo">
+    <meta name="twitter:description"
+        content="Cortes, barba, serviços e produtos com solicitações pelo WhatsApp.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1100&q=85"
+        fetchpriority="high">
+    <script src="https://unpkg.com/lucide@1.28.0/dist/umd/lucide.js" defer></script>
 
     <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HairSalon",
+        "@id": "/#barbearia",
+        "name": "Norte Barbearia",
+        "description": "Barbearia de bairro com serviços de corte, barba e cuidados masculinos.",
+        "url": "/",
+        "telephone": "+55 11 99999-9999",
+        "priceRange": "R$ 35–R$ 110",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Harmonia, 241",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "20:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "18:00"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de barbearia",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "price": "50.00",
+                    "priceCurrency": "BRL",
+                    "itemOffered": { "@type": "Service", "name": "Corte da casa" }
+                },
+                {
+                    "@type": "Offer",
+                    "price": "35.00",
+                    "priceCurrency": "BRL",
+                    "itemOffered": { "@type": "Service", "name": "Barba completa" }
+                },
+                {
+                    "@type": "Offer",
+                    "price": "80.00",
+                    "priceCurrency": "BRL",
+                    "itemOffered": { "@type": "Service", "name": "Combo Norte" }
+                },
+                {
+                    "@type": "Offer",
+                    "price": "110.00",
+                    "priceCurrency": "BRL",
+                    "itemOffered": { "@type": "Service", "name": "Ritual premium" }
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -79,7 +165,8 @@
             </div>
             <div class="hero-photo">
                 <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1100&q=85"
-                    alt="Barbeiro fazendo acabamento em cliente" loading="lazy">
+                    alt="Barbeiro fazendo acabamento em cliente" width="1100" height="733" fetchpriority="high"
+                    decoding="async">
                 <div class="stamp"><i data-lucide="scissors"></i>feito<br>à mão</div>
                 <div class="rating"><b>4,9 ★</b><span>mais de 280 avaliações</span></div>
             </div>
