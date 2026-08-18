@@ -44,10 +44,10 @@
         <section class="booking wrap" id="booking-section" style="padding-top:40px;">
             <div class="book-box">
                 <div>
-                    <span class="eyebrow">Agenda online</span>
+                    <span class="eyebrow">Solicitação de horário</span>
                     <h2>Seu próximo horário começa aqui.</h2>
                     <p>Escolha o serviço, o barbeiro e o melhor dia. A barbearia confirmará o horário posteriormente.</p>
-                    <p><b style="color:var(--orange)">●</b> <b>Agenda aberta</b><br><small>Terça a sábado · 09h às
+                    <p><b style="color:var(--orange)">●</b> <b>Horário de atendimento</b><br><small>Terça a sábado · 09h às
                             20h</small></p>
                     <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);">
                         <h3 style="font-size:18px;font-family:var(--font-display);">Dicas</h3>
@@ -58,48 +58,54 @@
                         </ul>
                     </div>
                 </div>
-                <form class="form" id="bookingForm">
+                <form class="form" id="bookingForm" data-booking-form novalidate>
                     <div class="field">
                         <label for="bookName">Seu nome</label>
-                        <input id="bookName" type="text" required placeholder="Como podemos te chamar?">
+                        <input id="bookName" name="customerName" type="text" required autocomplete="name"
+                            placeholder="Como podemos te chamar?" aria-describedby="bookNameError">
+                        <span class="error-message" id="bookNameError" aria-live="polite"></span>
                     </div>
                     <div class="field">
                         <label for="bookService">Serviço</label>
-                        <select id="bookService">
-                            <option>Corte da casa — R$ 50</option>
-                            <option>Barba completa — R$ 35</option>
-                            <option>Combo Norte — R$ 80</option>
-                            <option>Ritual premium — R$ 110</option>
+                        <select id="bookService" name="service" required aria-describedby="bookServiceError">
+                            <option value="">Selecione um serviço</option>
                         </select>
+                        <span class="error-message" id="bookServiceError" aria-live="polite"></span>
                     </div>
                     <div class="field">
                         <label for="bookBarber">Barbeiro</label>
-                        <select id="bookBarber">
-                            <option>Carlos</option>
-                            <option>Ana</option>
-                            <option>Marcos</option>
-                            <option>Julia</option>
+                        <select id="bookBarber" name="barber" required aria-describedby="bookBarberError">
+                            <option value="">Selecione um profissional</option>
                         </select>
+                        <span class="error-message" id="bookBarberError" aria-live="polite"></span>
                     </div>
                     <div class="twocol">
                         <div class="field">
                             <label for="bookDate">Data</label>
-                            <input id="bookDate" type="date" required>
+                            <input id="bookDate" name="date" type="date" required aria-describedby="bookDateError">
+                            <span class="error-message" id="bookDateError" aria-live="polite"></span>
                         </div>
                         <div class="field">
                             <label for="bookTime">Horário</label>
-                            <select id="bookTime">
-                                <option>09:00</option>
-                                <option>10:00</option>
-                                <option>11:30</option>
-                                <option>14:00</option>
-                                <option>15:30</option>
-                                <option>17:00</option>
-                                <option>18:30</option>
+                            <select id="bookTime" name="time" required aria-describedby="bookTimeError">
+                                <option value="">Selecione um horário</option>
                             </select>
+                            <span class="error-message" id="bookTimeError" aria-live="polite"></span>
                         </div>
                     </div>
-                    <button class="btn" type="submit">Solicitar agendamento <i data-lucide="arrow-right"
+                    <div class="booking-summary" data-booking-summary aria-live="polite" aria-atomic="true">
+                        <h3>Resumo da solicitação</h3>
+                        <dl>
+                            <div><dt>Cliente</dt><dd data-summary="name">—</dd></div>
+                            <div><dt>Serviço</dt><dd data-summary="service">—</dd></div>
+                            <div><dt>Barbeiro</dt><dd data-summary="barber">—</dd></div>
+                            <div><dt>Data</dt><dd data-summary="date">—</dd></div>
+                            <div><dt>Horário</dt><dd data-summary="time">—</dd></div>
+                            <div><dt>Valor</dt><dd data-summary="price">—</dd></div>
+                        </dl>
+                    </div>
+                    <p class="booking-notice">O horário será confirmado pela barbearia pelo WhatsApp.</p>
+                    <button class="btn" type="submit">Solicitar pelo WhatsApp <i data-lucide="message-circle"
                             size="16"></i></button>
                 </form>
             </div>

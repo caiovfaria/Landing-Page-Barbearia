@@ -1469,6 +1469,15 @@ footer {
     display: block;
 }
 
+[data-theme="dark"] .field.error input,
+[data-theme="dark"] .field.error select {
+    background: #2a1d1d !important;
+}
+
+[data-theme="dark"] .field .error-message {
+    color: #ff9b9b !important;
+}
+
 .twocol {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1480,6 +1489,50 @@ footer {
    ============================================================ */
 .booking {
     padding: 80px 0;
+}
+
+.booking-summary {
+    margin: 18px 0 12px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+}
+
+.booking-summary h3,
+.booking-summary h4 {
+    margin: 0 0 10px;
+    font: 600 18px var(--font-display);
+}
+
+.booking-summary dl {
+    margin: 0;
+}
+
+.booking-summary dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 4px 0;
+    font-size: 13px;
+}
+
+.booking-summary dt {
+    color: var(--muted);
+}
+
+.booking-summary dd {
+    margin: 0;
+    text-align: right;
+    font-weight: 600;
+}
+
+.booking-notice {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
 }
 
 .book-box {

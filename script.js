@@ -4,6 +4,35 @@
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => document.querySelectorAll(selector);
 
+    const BUSINESS_CONFIG = {
+        name: 'Norte Barbearia',
+        whatsapp: '5511999999999'
+    };
+
+    const SERVICES = [
+        { id: 'corte-casa', name: 'Corte da casa', price: 50, description: 'Consulta e acabamento com navalha.', duration: '50 MIN' },
+        { id: 'barba-completa', name: 'Barba completa', price: 35, description: 'Toalha quente, desenho e hidratação.', duration: '40 MIN' },
+        { id: 'combo-norte', name: 'Combo Norte', price: 80, description: 'Corte + barba completa.', duration: '90 MIN' },
+        { id: 'ritual-premium', name: 'Ritual premium', price: 110, description: 'Combo Norte + massagem e produtos premium.', duration: '110 MIN' }
+    ];
+
+    const BARBERS = [
+        { id: 'rafael', name: 'Rafael' },
+        { id: 'lucas', name: 'Lucas' },
+        { id: 'andre', name: 'André' }
+    ];
+
+    const BOOKING_TIMES = [
+        '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+        '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+        '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00'
+    ];
+
+    const CURRENCY_FORMATTER = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
     // ============================================================
     // THEME SYSTEM
     // ============================================================
@@ -108,13 +137,7 @@
     function renderServices() {
         const grid = $('#serviceGrid');
         if (!grid) return;
-        const DATA_S = [
-            ['Corte da casa', 'R$ 50', 'Consulta e acabamento com navalha.', '50 MIN'],
-            ['Barba completa', 'R$ 35', 'Toalha quente, desenho e hidratação.', '40 MIN'],
-            ['Combo Norte', 'R$ 80', 'Corte + barba completa.', '90 MIN'],
-            ['Ritual premium', 'R$ 110', 'Combo Norte + massagem e produtos premium.', '110 MIN']
-        ];
-        grid.innerHTML = DATA_S.map(s => `<article class="service"><h3>${s[0]}<span class="price">${s[1]}</span></h3><p>${s[2]}</p><small>${s[3]}</small></article>`).join('');
+        grid.innerHTML = SERVICES.map(service => `<article class="service"><h3>${service.name}<span class="price">${CURRENCY_FORMATTER.format(service.price)}</span></h3><p>${service.description}</p><small>${service.duration}</small></article>`).join('');
     }
     function renderCuts() {
         const grid = $('#cuts');
@@ -231,19 +254,134 @@
     // BOOKING E EVENT LISTENERS
     // ============================================================
     function openBooking() {
-        setBookingDateDefaults();
         Modal.open('bookingLayer');
     }
 
-    function setBookingDateDefaults() {
-        const dateInput = $('#bookDate');
-        if (!dateInput) return;
+    function getTodayValue() {
         const today = new Date();
         const y = today.getFullYear();
         const m = String(today.getMonth() + 1).padStart(2, '0');
         const d = String(today.getDate()).padStart(2, '0');
-        dateInput.min = y + '-' + m + '-' + d;
-        if (!dateInput.value) dateInput.value = y + '-' + m + '-' + d;
+        return y + '-' + m + '-' + d;
+    }
+
+    function formatBookingDate(value) {
+        if (!value) return '—';
+        const parts = value.split('-');
+        if (parts.length !== 3) return value;
+        return parts[2] + '/' + parts[1] + '/' + parts[0];
+    }
+
+    function populateBookingFields(form) {
+        const serviceSelect = form.elements.service;
+        const barberSelect = form.elements.barber;
+        const timeSelect = form.elements.time;
+
+        serviceSelect.innerHTML = '<option value="">Selecione um serviço</option>' + SERVICES.map(service =>
+            `<option value="${service.id}">${service.name} — ${CURRENCY_FORMATTER.format(service.price)}</option>`
+        ).join('');
+        barberSelect.innerHTML = '<option value="">Selecione um profissional</option>' + BARBERS.map(barber =>
+            `<option value="${barber.id}">${barber.name}</option>`
+        ).join('');
+        timeSelect.innerHTML = '<option value="">Selecione um horário</option>' + BOOKING_TIMES.map(time =>
+            `<option value="${time}">${time}</option>`
+        ).join('');
+        form.elements.date.min = getTodayValue();
+    }
+
+    function getBookingData(form) {
+        const service = SERVICES.find(item => item.id === form.elements.service.value);
+        const barber = BARBERS.find(item => item.id === form.elements.barber.value);
+        return {
+            name: form.elements.customerName.value.trim(),
+            service: service,
+            barber: barber,
+            date: form.elements.date.value,
+            time: form.elements.time.value
+        };
+    }
+
+    function updateBookingSummary(form) {
+        const summary = form.querySelector('[data-booking-summary]');
+        if (!summary) return;
+        const data = getBookingData(form);
+        const values = {
+            name: data.name || '—',
+            service: data.service ? data.service.name : '—',
+            barber: data.barber ? data.barber.name : '—',
+            date: formatBookingDate(data.date),
+            time: data.time || '—',
+            price: data.service ? CURRENCY_FORMATTER.format(data.service.price) : '—'
+        };
+        Object.keys(values).forEach(key => {
+            const target = summary.querySelector(`[data-summary="${key}"]`);
+            if (target) target.textContent = values[key];
+        });
+    }
+
+    function setFieldError(field, message) {
+        const wrapper = field.closest('.field');
+        const errorId = field.getAttribute('aria-describedby');
+        const error = errorId ? document.getElementById(errorId) : null;
+        if (wrapper) wrapper.classList.toggle('error', Boolean(message));
+        if (error) error.textContent = message || '';
+        if (message) field.setAttribute('aria-invalid', 'true');
+        else field.removeAttribute('aria-invalid');
+    }
+
+    function validateBooking(form) {
+        const data = getBookingData(form);
+        const checks = [
+            { field: form.elements.customerName, message: data.name ? '' : 'Informe seu nome.' },
+            { field: form.elements.service, message: data.service ? '' : 'Selecione um serviço.' },
+            { field: form.elements.barber, message: data.barber ? '' : 'Selecione um profissional.' },
+            { field: form.elements.date, message: !data.date ? 'Selecione uma data.' : (data.date < getTodayValue() ? 'Selecione uma data a partir de hoje.' : '') },
+            { field: form.elements.time, message: data.time ? '' : 'Selecione um horário.' }
+        ];
+        let firstInvalid = null;
+        checks.forEach(check => {
+            setFieldError(check.field, check.message);
+            if (check.message && !firstInvalid) firstInvalid = check.field;
+        });
+        if (firstInvalid) firstInvalid.focus();
+        return !firstInvalid;
+    }
+
+    function buildWhatsAppUrl(data) {
+        const message = [
+            `Olá! Gostaria de solicitar um agendamento na ${BUSINESS_CONFIG.name}.`,
+            '',
+            `Nome: ${data.name}`,
+            `Serviço: ${data.service.name}`,
+            `Barbeiro: ${data.barber.name}`,
+            `Data: ${formatBookingDate(data.date)}`,
+            `Horário: ${data.time}`,
+            `Valor: ${CURRENCY_FORMATTER.format(data.service.price)}`,
+            '',
+            'Aguardo a confirmação do horário. Obrigado!'
+        ].join('\n');
+        return `https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+    }
+
+    function setupBookingForms() {
+        $$('[data-booking-form]').forEach(form => {
+            populateBookingFields(form);
+            updateBookingSummary(form);
+            form.addEventListener('input', function (e) {
+                if (e.target.matches('input, select')) setFieldError(e.target, '');
+                updateBookingSummary(form);
+            });
+            form.addEventListener('change', function (e) {
+                if (e.target.matches('input, select')) setFieldError(e.target, '');
+                updateBookingSummary(form);
+            });
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!validateBooking(form)) return;
+                const url = buildWhatsAppUrl(getBookingData(form));
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+        });
     }
 
     function setupListeners() {
@@ -288,11 +426,6 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') $$('.layer.show, .drawer.show').forEach(el => Modal.close(el.id));
         });
-        const bookingForm = $('#bookingForm');
-        if (bookingForm) bookingForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            Toast.show('Solicitação não enviada: o canal de agendamento será disponibilizado em breve.', 'warning');
-        });
     }
 
     // ============================================================
@@ -304,8 +437,8 @@
         renderCuts();
         renderProducts(); // Renderiza a loja completa
         loadCart();
+        setupBookingForms();
         setupListeners();
-        setBookingDateDefaults();
         if (window.lucide) lucide.createIcons();
     }
 

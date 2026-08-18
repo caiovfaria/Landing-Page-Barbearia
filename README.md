@@ -62,18 +62,21 @@ Os caminhos de `styles.css`/`script.js` e os IDs de produtos/paginação/formul�
 - **Tema claro/escuro** — persistido em `localStorage`, detecta preferência do sistema na primeira visita.
 - **Carrinho de compras** — adicionar/remover produtos, total calculado, persistido em `localStorage`, drawer lateral.
 - **Loja paginada** — 20 produtos, 8 por página, navegação por botões numerados.
-- **Solicitação de agendamento** — modal com formulário (serviço, barbeiro, data, horário); data mínima travada no dia atual. O envio ainda não está integrado.
+- **Solicitação de agendamento** — formulário compartilhado entre home e página interna, com resumo, validação e envio da solicitação pelo WhatsApp.
 - **Toasts** — notificações temporárias de sucesso/erro/aviso.
 - **Scroll to top** — botão flutuante para voltar ao topo.
 - **Acessibilidade** — skip link, `aria-*` em modais e regiões, fechar modais com `Esc`.
 
-> ⚠️ Este projeto é **front-end apenas**: solicitações de agendamento e pedido ainda não são enviadas. A interface informa essa limitação e mantém os dados preenchidos ou o carrinho intacto.
+> ⚠️ Este projeto é **front-end apenas**: a solicitação de agendamento abre o WhatsApp com uma mensagem pronta, mas o horário depende de confirmação da barbearia. Pedidos do carrinho ainda não são enviados.
 
 ## 🎨 Customização rápida
 
 - **Cores e variáveis**: topo do `styles.css`, dentro de `:root` (e `[data-theme="dark"]` para o modo escuro).
 - **Produtos da loja**: array `ALL_PRODUCTS` em `script.js` — cada item é `[nome, descrição, preço, imagem]`.
-- **Serviços exibidos**: array `DATA_S` dentro de `renderServices()` em `script.js`.
+- **WhatsApp da barbearia**: propriedade `whatsapp` em `BUSINESS_CONFIG`, no início de `script.js`.
+- **Serviços exibidos e disponíveis para agendamento**: array `SERVICES` em `script.js`.
+- **Profissionais**: array `BARBERS` em `script.js`.
+- **Horários para solicitação**: array `BOOKING_TIMES` em `script.js`.
 - **Cortes exibidos**: array `DATA_C` dentro de `renderCuts()` em `script.js`.
 - **Itens por página da loja**: constante `ITEMS_PER_PAGE` em `script.js`.
 
@@ -87,9 +90,8 @@ Os caminhos de `styles.css`/`script.js` e os IDs de produtos/paginação/formul�
 
 ## 📌 Notas conhecidas
 
-- O envio de solicitações de agendamento ainda precisa ser integrado a um canal real.
 - O envio de pedidos ainda precisa ser integrado a um canal real; o carrinho é mantido apenas no navegador.
-- A página e o modal de agendamento são duas interfaces da mesma funcionalidade e devem permanecer sincronizados.
+- A solicitação de agendamento não consulta disponibilidade real e não reserva horários automaticamente.
 
 ---
 
