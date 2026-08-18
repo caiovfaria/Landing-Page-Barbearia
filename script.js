@@ -94,15 +94,135 @@
     // MODAL SYSTEM
     // ============================================================
     const Modal = {
-        toggle: function (id, show) {
-            if (show === undefined) show = true;
+        active: null,
+        opener: null,
+        backgroundState: [],
+        getFocusable: function (container) {
+            const selector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+            return Array.from(container.querySelectorAll(selector)).filter(element =>
+                element.getAttribute('aria-hidden') !== 'true' && element.offsetParent !== null
+            );
+        },
+        updateTriggers: function (id, expanded) {
+            $$(`[aria-controls="${id}"]`).forEach(trigger => {
+                trigger.setAttribute('aria-expanded', String(expanded));
+            });
+        },
+        isolateBackground: function (overlay) {
+            this.backgroundState = Array.from(document.body.children)
+                .filter(element => element !== overlay)
+                .map(element => ({
+                    element: element,
+                    inert: element.inert,
+                    ariaHidden: element.getAttribute('aria-hidden')
+                }));
+            this.backgroundState.forEach(state => {
+                state.element.inert = true;
+                state.element.setAttribute('aria-hidden', 'true');
+            });
+        },
+        restoreBackground: function () {
+            this.backgroundState.forEach(state => {
+                state.element.inert = state.inert;
+                if (state.ariaHidden === null) state.element.removeAttribute('aria-hidden');
+                else state.element.setAttribute('aria-hidden', state.ariaHidden);
+            });
+            this.backgroundState = [];
+        },
+        open: function (id, trigger) {
             const el = document.getElementById(id);
             if (!el) return;
-            el.classList.toggle('show', show);
-            document.body.style.overflow = show ? 'hidden' : '';
+            if (this.active && this.active !== el) this.close(this.active.id, false);
+            this.active = el;
+            this.opener = trigger || document.activeElement;
+            el.classList.add('show');
+            el.setAttribute('aria-hidden', 'false');
+            this.updateTriggers(id, true);
+            document.body.style.overflow = 'hidden';
+            this.isolateBackground(el);
+            window.requestAnimationFrame(() => {
+                const focusable = this.getFocusable(el);
+                if (this.active === el && focusable.length) focusable[0].focus();
+            });
         },
-        close: function (id) { this.toggle(id, false); },
-        open: function (id) { this.toggle(id, true); }
+        close: function (id, restoreFocus) {
+            const el = document.getElementById(id);
+            if (!el || !el.classList.contains('show')) return;
+            const shouldRestoreFocus = restoreFocus !== false;
+            const opener = this.opener;
+            el.classList.remove('show');
+            el.setAttribute('aria-hidden', 'true');
+            this.updateTriggers(id, false);
+            this.restoreBackground();
+            document.body.style.overflow = '';
+            this.active = null;
+            this.opener = null;
+            if (shouldRestoreFocus && opener && opener.isConnected) opener.focus();
+        },
+        trapTab: function (event) {
+            if (!this.active || event.key !== 'Tab') return;
+            const focusable = this.getFocusable(this.active);
+            if (!focusable.length) {
+                event.preventDefault();
+                return;
+            }
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        },
+        keepFocusInside: function (event) {
+            if (!this.active || this.active.contains(event.target)) return;
+            const focusable = this.getFocusable(this.active);
+            if (focusable.length) focusable[0].focus();
+        }
+    };
+
+    const MobileNav = {
+        button: null,
+        menu: null,
+        media: null,
+        init: function () {
+            this.button = $('#menuToggle');
+            this.menu = $('#primaryNav');
+            if (!this.button || !this.menu) return;
+            this.media = window.matchMedia('(max-width: 768px)');
+            this.button.addEventListener('click', () => this.set(!this.isOpen()));
+            this.menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => this.close(false));
+            });
+            const sync = () => this.syncViewport();
+            if (this.media.addEventListener) this.media.addEventListener('change', sync);
+            else this.media.addListener(sync);
+            this.syncViewport();
+        },
+        isOpen: function () {
+            return Boolean(this.menu && this.menu.classList.contains('mobile-open'));
+        },
+        set: function (open, restoreFocus) {
+            if (!this.button || !this.menu || !this.media.matches) return;
+            this.menu.classList.toggle('mobile-open', open);
+            this.menu.setAttribute('aria-hidden', String(!open));
+            this.button.setAttribute('aria-expanded', String(open));
+            this.button.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+            if (!open && restoreFocus) this.button.focus();
+        },
+        close: function (restoreFocus) {
+            this.set(false, restoreFocus);
+        },
+        syncViewport: function () {
+            if (!this.button || !this.menu) return;
+            this.menu.classList.remove('mobile-open');
+            this.button.setAttribute('aria-expanded', 'false');
+            this.button.setAttribute('aria-label', 'Abrir menu');
+            if (this.media.matches) this.menu.setAttribute('aria-hidden', 'true');
+            else this.menu.removeAttribute('aria-hidden');
+        }
     };
 
     // ============================================================
@@ -178,7 +298,8 @@
         // Paginação
         pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => {
             const num = i + 1;
-            return `<button class="page-btn ${num === currentPage ? 'active' : ''}" type="button" data-page="${num}">${num}</button>`;
+            const current = num === currentPage;
+            return `<button class="page-btn ${current ? 'active' : ''}" type="button" data-page="${num}" aria-label="Ir para página ${num} de produtos"${current ? ' aria-current="page"' : ''}>${num}</button>`;
         }).join('');
 
         if (window.lucide) lucide.createIcons();
@@ -367,8 +488,8 @@
     // ============================================================
     // BOOKING E EVENT LISTENERS
     // ============================================================
-    function openBooking() {
-        Modal.open('bookingLayer');
+    function openBooking(event) {
+        Modal.open('bookingLayer', event.currentTarget);
     }
 
     function getTodayValue() {
@@ -506,14 +627,16 @@
                 window.location.href = destination;
                 return;
             }
-            Modal.open('drawer');
+            Modal.open('drawer', this);
             updateCartUI();
         });
         const viewCartBtn = $('#viewCart');
-        if (viewCartBtn) viewCartBtn.addEventListener('click', function () { Modal.open('drawer'); updateCartUI(); });
+        if (viewCartBtn) viewCartBtn.addEventListener('click', function () { Modal.open('drawer', this); updateCartUI(); });
         const checkoutBtn = $('#checkout');
         if (checkoutBtn) checkoutBtn.addEventListener('click', requestOrder);
         $$('[data-open-booking]').forEach(btn => {
+            btn.setAttribute('aria-controls', 'bookingLayer');
+            btn.setAttribute('aria-expanded', 'false');
             btn.addEventListener('click', openBooking);
         });
         const productsGrid = $('#productsGrid');
@@ -543,8 +666,17 @@
             el.addEventListener('click', function (e) { if (e.target === this) Modal.close(this.id); });
         });
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') $$('.layer.show, .drawer.show').forEach(el => Modal.close(el.id));
+            if (e.key === 'Escape' && Modal.active) {
+                e.preventDefault();
+                Modal.close(Modal.active.id);
+            } else if (e.key === 'Escape' && MobileNav.isOpen()) {
+                e.preventDefault();
+                MobileNav.close(true);
+            } else {
+                Modal.trapTab(e);
+            }
         });
+        document.addEventListener('focusin', function (e) { Modal.keepFocusInside(e); });
     }
 
     // ============================================================
@@ -557,6 +689,7 @@
         renderProducts(); // Renderiza a loja completa
         loadCart();
         setupBookingForms();
+        MobileNav.init();
         setupListeners();
         if (window.lucide) lucide.createIcons();
     }

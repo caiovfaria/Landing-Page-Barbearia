@@ -19,38 +19,49 @@
 
 <body>
 
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+
     <header class="header" role="banner">
         <div class="wrap">
-            <nav class="nav" role="navigation">
+            <nav class="nav" role="navigation" aria-label="Navegação principal">
                 <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
-                <ul class="links">
+                <ul class="links" id="primaryNav">
                     <li><a href="../index.html#historia">A casa</a></li>
                     <li><a href="../index.html#servicos">Serviços</a></li>
                     <li><a href="../index.html#cortes">Cortes</a></li>
                     <li><a href="produtos.html">Loja</a></li>
+                    <li class="mobile-only"><a href="agendamento.html">Agendar</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="icon" id="cartBtn" data-href="produtos.html" aria-label="Carrinho">
+                    <button class="icon" id="cartBtn" type="button" data-href="produtos.html" aria-label="Carrinho">
                         <i data-lucide="shopping-bag" size="19"></i>
-                        <span class="count" id="count">0</span>
+                        <span class="count" id="count" aria-hidden="true">0</span>
                     </button>
                     <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema escuro/claro">
+                        <span class="icon-sun">☀️</span>
+                        <span class="icon-moon">🌙</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu"
+                        aria-controls="primaryNav" aria-expanded="false">
+                        <i data-lucide="menu" size="20"></i>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
         <section class="booking wrap" id="booking-section" style="padding-top:40px;">
             <div class="book-box">
                 <div>
                     <span class="eyebrow">Solicitação de horário</span>
-                    <h2>Seu próximo horário começa aqui.</h2>
+                    <h1>Seu próximo horário começa aqui.</h1>
                     <p>Escolha o serviço, o barbeiro e o melhor dia. A barbearia confirmará o horário posteriormente.</p>
                     <p><b style="color:var(--orange)">●</b> <b>Horário de atendimento</b><br><small>Terça a sábado · 09h às
                             20h</small></p>
                     <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);">
-                        <h3 style="font-size:18px;font-family:var(--font-display);">Dicas</h3>
+                        <h2 style="font-size:18px;font-family:var(--font-display);">Dicas</h2>
                         <ul style="list-style:none;padding:0;font-size:14px;color:var(--muted);">
                             <li style="margin:8px 0;">✂️ Chegue 5 minutos antes</li>
                             <li style="margin:8px 0;">☕ Café e água disponíveis</li>
@@ -94,7 +105,7 @@
                         </div>
                     </div>
                     <div class="booking-summary" data-booking-summary aria-live="polite" aria-atomic="true">
-                        <h3>Resumo da solicitação</h3>
+                        <h2>Resumo da solicitação</h2>
                         <dl>
                             <div><dt>Cliente</dt><dd data-summary="name">—</dd></div>
                             <div><dt>Serviço</dt><dd data-summary="service">—</dd></div>
@@ -121,14 +132,14 @@
                     </p>
                 </div>
                 <div>
-                    <h4>Visite</h4>
+                    <h2 class="footer-heading">Visite</h2>
                     <address>
                         <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
                         <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
                     </address>
                 </div>
                 <div>
-                    <h4>Fale com a gente</h4>
+                    <h2 class="footer-heading">Fale com a gente</h2>
                     <a href="tel:+5511999999999">(11) 99999-9999</a>
                     <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
                 </div>
@@ -140,7 +151,7 @@
         </div>
     </footer>
 
-    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <script src="../script.js"></script>
 

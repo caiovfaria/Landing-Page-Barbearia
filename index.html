@@ -20,31 +20,38 @@
 <body>
 
     <!-- Skip Link -->
-    <a class="skip-link" href="#inicio">Pular para o conteúdo principal</a>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
 
     <!-- ============================================================ -->
     <!-- HEADER -->
     <!-- ============================================================ -->
     <header class="header" role="banner">
         <div class="wrap">
-            <nav class="nav" role="navigation">
+            <nav class="nav" role="navigation" aria-label="Navegação principal">
                 <a href="#" class="logo"><i class="mark"></i>NORTE</a>
-                <ul class="links">
+                <ul class="links" id="primaryNav">
                     <li><a href="#historia">A casa</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#cortes">Cortes</a></li>
                     <li><a href="#loja">Loja</a></li> <!-- Agora a loja é uma âncora na mesma página -->
+                    <li class="mobile-only"><a href="pages/agendamento.html">Agendar</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                    <button class="icon" id="cartBtn" type="button" aria-label="Carrinho" aria-controls="drawer"
+                        aria-expanded="false">
                         <i data-lucide="shopping-bag" size="19"></i>
                         <span class="count" id="count" aria-hidden="true">0</span>
                     </button>
-                    <button class="btn" type="button" data-open-booking>Agendar <i data-lucide="arrow-up-right"
+                    <button class="btn" type="button" data-open-booking aria-controls="bookingLayer"
+                        aria-expanded="false">Agendar <i data-lucide="arrow-up-right"
                             size="15"></i></button>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema escuro/claro">
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema escuro/claro">
                         <span class="icon-sun">☀️</span>
                         <span class="icon-moon">🌙</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu"
+                        aria-controls="primaryNav" aria-expanded="false">
+                        <i data-lucide="menu" size="20"></i>
                     </button>
                 </div>
             </nav>
@@ -54,7 +61,7 @@
     <!-- ============================================================ -->
     <!-- MAIN -->
     <!-- ============================================================ -->
-    <main>
+    <main id="main-content" tabindex="-1">
 
         <!-- Hero -->
         <section class="hero wrap" id="inicio" aria-labelledby="hero-title">
@@ -179,7 +186,7 @@
                 <div class="products-grid" id="productsGrid"></div>
 
                 <!-- Paginação -->
-                <div class="pagination" id="pagination"></div>
+                <nav class="pagination" id="pagination" aria-label="Paginação de produtos"></nav>
             </div>
         </section>
 
@@ -197,14 +204,14 @@
                     </p>
                 </div>
                 <div>
-                    <h4>Visite</h4>
+                    <h2 class="footer-heading">Visite</h2>
                     <address>
                         <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
                         <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
                     </address>
                 </div>
                 <div>
-                    <h4>Fale com a gente</h4>
+                    <h2 class="footer-heading">Fale com a gente</h2>
                     <a href="tel:+5511999999999">(11) 99999-9999</a>
                     <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
                 </div>
@@ -219,7 +226,8 @@
     <!-- ============================================================ -->
     <!-- MODAL AGENDAMENTO -->
     <!-- ============================================================ -->
-    <div class="layer" id="bookingLayer" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+    <div class="layer" id="bookingLayer" role="dialog" aria-modal="true" aria-labelledby="booking-title"
+        aria-hidden="true">
         <div class="modal">
             <button class="icon close" data-close="bookingLayer" aria-label="Fechar agendamento">
                 <i data-lucide="x"></i>
@@ -283,7 +291,8 @@
     <!-- ============================================================ -->
     <!-- CARRINHO DRAWER -->
     <!-- ============================================================ -->
-    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title"
+        aria-hidden="true">
         <div>
             <div class="drawer-head">
                 <div>
@@ -315,7 +324,7 @@
     <!-- ============================================================ -->
     <!-- TOAST -->
     <!-- ============================================================ -->
-    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <!-- ============================================================ -->
     <!-- SCROLL TOP -->

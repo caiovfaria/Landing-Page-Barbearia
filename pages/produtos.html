@@ -19,40 +19,53 @@
 
 <body>
 
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+
     <header class="header" role="banner">
         <div class="wrap">
-            <nav class="nav" role="navigation">
+            <nav class="nav" role="navigation" aria-label="Navegação principal">
                 <a href="../index.html" class="logo"><i class="mark"></i>NORTE</a>
-                <ul class="links">
+                <ul class="links" id="primaryNav">
                     <li><a href="../index.html#historia">A casa</a></li>
                     <li><a href="../index.html#servicos">Serviços</a></li>
                     <li><a href="../index.html#cortes">Cortes</a></li>
                     <li><a href="produtos.html">Loja</a></li>
+                    <li class="mobile-only"><a href="agendamento.html">Agendar</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="icon" id="cartBtn" aria-label="Carrinho">
+                    <button class="icon" id="cartBtn" type="button" aria-label="Carrinho" aria-controls="drawer"
+                        aria-expanded="false">
                         <i data-lucide="shopping-bag" size="19"></i>
                         <span class="count" id="count" aria-hidden="true">0</span>
                     </button>
                     <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema escuro/claro">
+                        <span class="icon-sun">☀️</span>
+                        <span class="icon-moon">🌙</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu"
+                        aria-controls="primaryNav" aria-expanded="false">
+                        <i data-lucide="menu" size="20"></i>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
         <section class="shop" id="loja" style="padding:40px 0 80px;">
             <div class="wrap">
                 <div class="section-top">
                     <div>
                         <span class="eyebrow">Leve o cuidado para casa</span>
-                        <h2 class="title">Nossa seleção.</h2>
+                        <h1 class="title">Nossa seleção.</h1>
                     </div>
-                    <button class="btn ghost" id="viewCart">Ver carrinho <i data-lucide="shopping-bag"
+                    <button class="btn ghost" id="viewCart" type="button" aria-controls="drawer"
+                        aria-expanded="false">Ver carrinho <i data-lucide="shopping-bag"
                             size="15"></i></button>
                 </div>
                 <div class="products-grid" id="productsGrid"></div>
-                <div class="pagination" id="pagination"></div>
+                <nav class="pagination" id="pagination" aria-label="Paginação de produtos"></nav>
             </div>
         </section>
 
@@ -67,14 +80,14 @@
                     </p>
                 </div>
                 <div>
-                    <h4>Visite</h4>
+                    <h2 class="footer-heading">Visite</h2>
                     <address>
                         <span>Rua Harmonia, 241<br>Vila Madalena · SP</span>
                         <span>Ter–Sex: 09h–20h<br>Sáb: 09h–18h</span>
                     </address>
                 </div>
                 <div>
-                    <h4>Fale com a gente</h4>
+                    <h2 class="footer-heading">Fale com a gente</h2>
                     <a href="tel:+5511999999999">(11) 99999-9999</a>
                     <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
                 </div>
@@ -86,7 +99,8 @@
         </div>
     </footer>
 
-    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title"
+        aria-hidden="true">
         <div>
             <div class="drawer-head">
                 <div>
@@ -113,7 +127,7 @@
         </div>
     </div>
 
-    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <script src="../script.js"></script>
 
