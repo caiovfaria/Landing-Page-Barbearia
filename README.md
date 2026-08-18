@@ -60,19 +60,19 @@ Os caminhos de `styles.css`/`script.js` e os IDs de produtos/paginação/formul�
 ## ⚙️ Funcionalidades (JavaScript)
 
 - **Tema claro/escuro** — persistido em `localStorage`, detecta preferência do sistema na primeira visita.
-- **Carrinho de compras** — adicionar/remover produtos, total calculado, persistido em `localStorage`, drawer lateral.
+- **Carrinho de pedidos** — quantidades, subtotais e total, persistência validada em `localStorage` e envio da solicitação pelo WhatsApp.
 - **Loja paginada** — 20 produtos, 8 por página, navegação por botões numerados.
 - **Solicitação de agendamento** — formulário compartilhado entre home e página interna, com resumo, validação e envio da solicitação pelo WhatsApp.
 - **Toasts** — notificações temporárias de sucesso/erro/aviso.
 - **Scroll to top** — botão flutuante para voltar ao topo.
 - **Acessibilidade** — skip link, `aria-*` em modais e regiões, fechar modais com `Esc`.
 
-> ⚠️ Este projeto é **front-end apenas**: a solicitação de agendamento abre o WhatsApp com uma mensagem pronta, mas o horário depende de confirmação da barbearia. Pedidos do carrinho ainda não são enviados.
+> ⚠️ Este projeto é **front-end apenas**: agendamentos e pedidos abrem o WhatsApp com mensagens prontas, mas dependem de confirmação da barbearia. Não há pagamento ou reserva automática.
 
 ## 🎨 Customização rápida
 
 - **Cores e variáveis**: topo do `styles.css`, dentro de `:root` (e `[data-theme="dark"]` para o modo escuro).
-- **Produtos da loja**: array `ALL_PRODUCTS` em `script.js` — cada item é `[nome, descrição, preço, imagem]`.
+- **Produtos da loja**: array de objetos `ALL_PRODUCTS` em `script.js`, com `id`, `name`, `description`, `price` e `image`.
 - **WhatsApp da barbearia**: propriedade `whatsapp` em `BUSINESS_CONFIG`, no início de `script.js`.
 - **Serviços exibidos e disponíveis para agendamento**: array `SERVICES` em `script.js`.
 - **Profissionais**: array `BARBERS` em `script.js`.
@@ -90,7 +90,7 @@ Os caminhos de `styles.css`/`script.js` e os IDs de produtos/paginação/formul�
 
 ## 📌 Notas conhecidas
 
-- O envio de pedidos ainda precisa ser integrado a um canal real; o carrinho é mantido apenas no navegador.
+- Pedidos não consultam estoque, pagamento, retirada ou entrega; esses detalhes são confirmados manualmente no WhatsApp.
 - A solicitação de agendamento não consulta disponibilidade real e não reserva horários automaticamente.
 
 ---

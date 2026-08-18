@@ -32,7 +32,7 @@
                 <div class="nav-actions">
                     <button class="icon" id="cartBtn" aria-label="Carrinho">
                         <i data-lucide="shopping-bag" size="19"></i>
-                        <span class="count" id="count">0</span>
+                        <span class="count" id="count" aria-hidden="true">0</span>
                     </button>
                     <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
                 </div>
@@ -86,23 +86,30 @@
         </div>
     </footer>
 
-    <div class="drawer" id="drawer" role="dialog" aria-modal="true">
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
         <div>
             <div class="drawer-head">
                 <div>
                     <span class="eyebrow">Sua seleção</span>
-                    <h2 style="font:28px 'Playfair Display';margin:4px 0;">Carrinho</h2>
+                    <h2 id="cart-title" style="font:28px 'Playfair Display';margin:4px 0;">Carrinho</h2>
                 </div>
-                <button class="icon" data-close="drawer"><i data-lucide="x"></i></button>
+                <button class="icon" data-close="drawer" aria-label="Fechar carrinho"><i data-lucide="x"></i></button>
             </div>
-            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-items" id="cartItems" aria-label="Itens do carrinho"></div>
+            <div class="cart-total-items">
+                <span>Total de itens</span>
+                <strong id="totalItems">0</strong>
+            </div>
             <div class="total">
                 <span>Total</span>
                 <span id="total">R$ 0</span>
             </div>
-            <button class="btn" id="checkout" style="width:100%;justify-content:center;margin-top:18px;">
-                Solicitar pedido
+            <p class="cart-notice">Disponibilidade, pagamento e retirada/entrega serão confirmados pela barbearia pelo
+                WhatsApp.</p>
+            <button class="btn" id="checkout" disabled style="width:100%;justify-content:center;margin-top:18px;">
+                Solicitar pedido pelo WhatsApp
             </button>
+            <p class="sr-only" id="cartStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
     </div>
 

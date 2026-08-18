@@ -109,26 +109,26 @@
     // DADOS DA LOJA (20 Produtos)
     // ============================================================
     const ALL_PRODUCTS = [
-        ['Pomada matte', 'Fixação média · 80g', 42.00, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
-        ['Óleo para barba', 'Nutrição diária · 30ml', 35.00, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80'],
-        ['Pente de bolso', 'Acetato italiano', 22.00, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80'],
-        ['Navalhete Norte', 'Aço inoxidável', 55.00, 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80'],
-        ['Shampoo diário', 'Limpeza suave · 250ml', 38.00, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
-        ['Bálsamo pós-barba', 'Refrescância · 100ml', 32.00, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
-        ['Pó texturizador', 'Volume seco · 20g', 45.00, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
-        ['Escova modeladora', 'Cerdas naturais', 28.00, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80'],
-        ['Cera de barba', 'Modelagem forte · 50g', 39.90, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
-        ['Loção pós-barba', 'Aloe vera · 100ml', 45.90, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
-        ['Tesoura de barbeiro', 'Aço carbono', 64.00, 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80'],
-        ['Tônico capilar', 'Crescimento · 60ml', 52.00, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80'],
-        ['Gel fixador', 'Forte · 200ml', 19.90, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
-        ['Condicionador', 'Hidratação profunda', 44.00, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
-        ['Necessaire', 'Couro sintético', 89.00, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80'],
-        ['Máquina de corte', 'Profissional', 299.00, 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80'],
-        ['Pincel de barba', 'Cerdas sintéticas', 18.50, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80'],
-        ['Manteiga corporal', 'Hidratação · 100g', 49.00, 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80'],
-        ['Sabonete líquido', 'Barbearia · 200ml', 24.00, 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80'],
-        ['Spray texturizador', 'Acabamento · 150ml', 68.00, 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80']
+        { id: 'pomada-matte', name: 'Pomada matte', description: 'Fixação média · 80g', price: 42.00, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80' },
+        { id: 'oleo-barba', name: 'Óleo para barba', description: 'Nutrição diária · 30ml', price: 35.00, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80' },
+        { id: 'pente-bolso', name: 'Pente de bolso', description: 'Acetato italiano', price: 22.00, image: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80' },
+        { id: 'navalhete-norte', name: 'Navalhete Norte', description: 'Aço inoxidável', price: 55.00, image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80' },
+        { id: 'shampoo-diario', name: 'Shampoo diário', description: 'Limpeza suave · 250ml', price: 38.00, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80' },
+        { id: 'balsamo-pos-barba', name: 'Bálsamo pós-barba', description: 'Refrescância · 100ml', price: 32.00, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80' },
+        { id: 'po-texturizador', name: 'Pó texturizador', description: 'Volume seco · 20g', price: 45.00, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80' },
+        { id: 'escova-modeladora', name: 'Escova modeladora', description: 'Cerdas naturais', price: 28.00, image: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80' },
+        { id: 'cera-barba', name: 'Cera de barba', description: 'Modelagem forte · 50g', price: 39.90, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80' },
+        { id: 'locao-pos-barba', name: 'Loção pós-barba', description: 'Aloe vera · 100ml', price: 45.90, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80' },
+        { id: 'tesoura-barbeiro', name: 'Tesoura de barbeiro', description: 'Aço carbono', price: 64.00, image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80' },
+        { id: 'tonico-capilar', name: 'Tônico capilar', description: 'Crescimento · 60ml', price: 52.00, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80' },
+        { id: 'gel-fixador', name: 'Gel fixador', description: 'Forte · 200ml', price: 19.90, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80' },
+        { id: 'condicionador', name: 'Condicionador', description: 'Hidratação profunda', price: 44.00, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80' },
+        { id: 'necessaire', name: 'Necessaire', description: 'Couro sintético', price: 89.00, image: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80' },
+        { id: 'maquina-corte', name: 'Máquina de corte', description: 'Profissional', price: 299.00, image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80' },
+        { id: 'pincel-barba', name: 'Pincel de barba', description: 'Cerdas sintéticas', price: 18.50, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80' },
+        { id: 'manteiga-corporal', name: 'Manteiga corporal', description: 'Hidratação · 100g', price: 49.00, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80' },
+        { id: 'sabonete-liquido', name: 'Sabonete líquido', description: 'Barbearia · 200ml', price: 24.00, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=500&q=80' },
+        { id: 'spray-texturizador', name: 'Spray texturizador', description: 'Acabamento · 150ml', price: 68.00, image: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=500&q=80' }
     ];
 
     // ============================================================
@@ -171,9 +171,8 @@
         const data = getPageData(currentPage);
         const totalPages = Math.ceil(data.total / ITEMS_PER_PAGE);
 
-        grid.innerHTML = data.items.map((p, i) => {
-            const realIndex = (currentPage - 1) * ITEMS_PER_PAGE + i;
-            return `<article class="product"><img src="${p[3]}" alt="${p[0]}" loading="lazy"><small>${p[1]}</small><div><div><strong>${p[0]}</strong><br><span style="color:var(--muted);font-size:12px;">R$ ${p[2].toFixed(2)}</span></div><button class="add" type="button" data-product-index="${realIndex}">+</button></div></article>`;
+        grid.innerHTML = data.items.map(product => {
+            return `<article class="product"><img src="${product.image}" alt="${product.name}" loading="lazy"><small>${product.description}</small><div><div><strong>${product.name}</strong><br><span style="color:var(--muted);font-size:12px;">${CURRENCY_FORMATTER.format(product.price)}</span></div><button class="add" type="button" data-product-id="${product.id}" aria-label="Adicionar ${product.name} ao carrinho">+</button></div></article>`;
         }).join('');
 
         // Paginação
@@ -196,58 +195,173 @@
     // ============================================================
     let cart = [];
 
+    function findProduct(reference) {
+        if (!reference) return null;
+        return ALL_PRODUCTS.find(product => product.id === reference.id) ||
+            ALL_PRODUCTS.find(product => product.name === reference.name) || null;
+    }
+
+    function normalizeCartData(rawCart) {
+        if (!Array.isArray(rawCart)) return [];
+        const quantities = new Map();
+
+        rawCart.forEach(entry => {
+            let reference;
+            let quantity;
+            let storedPrice;
+
+            if (Array.isArray(entry)) {
+                reference = { name: entry[0] };
+                storedPrice = entry[2];
+                quantity = 1;
+            } else if (entry && typeof entry === 'object') {
+                reference = { id: entry.id, name: entry.name };
+                storedPrice = entry.price;
+                quantity = Number(entry.quantity);
+            } else {
+                return;
+            }
+
+            const product = findProduct(reference);
+            const validPrice = Number.isFinite(storedPrice) && storedPrice === product?.price;
+            if (!product || !validPrice || !Number.isSafeInteger(quantity) || quantity <= 0) return;
+            const combinedQuantity = (quantities.get(product.id) || 0) + quantity;
+            if (Number.isSafeInteger(combinedQuantity)) quantities.set(product.id, combinedQuantity);
+        });
+
+        return Array.from(quantities, ([id, quantity]) => {
+            const product = ALL_PRODUCTS.find(item => item.id === id);
+            return { id: product.id, name: product.name, price: product.price, quantity: quantity };
+        });
+    }
+
     function loadCart() {
-        try { cart = JSON.parse(localStorage.getItem('norteCart')) || []; } catch (e) { cart = []; }
+        try {
+            cart = normalizeCartData(JSON.parse(localStorage.getItem('norteCart')) || []);
+        } catch (e) {
+            cart = [];
+        }
+        try { localStorage.setItem('norteCart', JSON.stringify(cart)); } catch (e) { }
         updateCartUI();
     }
 
-    function saveCart() {
+    function saveCart(announcement) {
         try { localStorage.setItem('norteCart', JSON.stringify(cart)); } catch (e) { }
         updateCartUI();
+        announceCart(announcement);
+    }
+
+    function getCartTotals() {
+        return cart.reduce((totals, item) => {
+            totals.quantity += item.quantity;
+            totals.value += item.price * item.quantity;
+            return totals;
+        }, { quantity: 0, value: 0 });
+    }
+
+    function announceCart(message) {
+        if (!message) return;
+        const status = $('#cartStatus');
+        if (!status) return;
+        status.textContent = '';
+        window.requestAnimationFrame(() => { status.textContent = message; });
     }
 
     function updateCartUI() {
         const count = $('#count');
         const items = $('#cartItems');
+        const totalItems = $('#totalItems');
         const total = $('#total');
+        const checkout = $('#checkout');
+        const cartBtn = $('#cartBtn');
+        const totals = getCartTotals();
 
         if (count) {
-            count.textContent = cart.length;
-            count.style.display = cart.length > 0 ? 'grid' : 'none';
+            count.textContent = totals.quantity;
+            count.style.display = totals.quantity > 0 ? 'grid' : 'none';
         }
+        if (cartBtn) cartBtn.setAttribute('aria-label', `Carrinho, ${totals.quantity} ${totals.quantity === 1 ? 'item' : 'itens'}`);
         if (items) {
             if (cart.length === 0) {
-                items.innerHTML = '<div class="empty"><p>Seu carrinho está vazio.</p></div>';
+                items.innerHTML = '<div class="empty"><p>Seu carrinho está vazio.</p><small>Adicione produtos para montar uma solicitação.</small></div>';
             } else {
-                items.innerHTML = cart.map((p, i) =>
-                    `<div class="cart-item"><span><strong>${p[0]}</strong><br><small>R$ ${p[2].toFixed(2)}</small></span><button class="add" type="button" data-cart-index="${i}">×</button></div>`
+                items.innerHTML = cart.map(item =>
+                    `<div class="cart-item">
+                        <div class="cart-item-info">
+                            <strong>${item.name}</strong>
+                            <small>Preço unitário: ${CURRENCY_FORMATTER.format(item.price)}</small>
+                            <span class="item-subtotal">Subtotal: ${CURRENCY_FORMATTER.format(item.price * item.quantity)}</span>
+                        </div>
+                        <div class="cart-item-actions" role="group" aria-label="Quantidade de ${item.name}">
+                            <button class="quantity-control" type="button" data-cart-action="decrease" data-product-id="${item.id}" aria-label="Diminuir quantidade de ${item.name}">−</button>
+                            <span class="cart-quantity" aria-label="Quantidade atual de ${item.name}: ${item.quantity}">${item.quantity}</span>
+                            <button class="quantity-control" type="button" data-cart-action="increase" data-product-id="${item.id}" aria-label="Aumentar quantidade de ${item.name}">+</button>
+                            <button class="remove-item" type="button" data-cart-action="remove" data-product-id="${item.id}" aria-label="Remover ${item.name}">Remover</button>
+                        </div>
+                    </div>`
                 ).join('');
             }
         }
-        if (total) {
-            const sum = cart.reduce((acc, p) => acc + p[2], 0);
-            total.textContent = 'R$ ' + sum.toFixed(2).replace('.', ',');
-        }
+        if (totalItems) totalItems.textContent = totals.quantity;
+        if (total) total.textContent = CURRENCY_FORMATTER.format(totals.value);
+        if (checkout) checkout.disabled = cart.length === 0;
         if (window.lucide) lucide.createIcons();
     }
 
-    function addToCart(index) {
-        if (index < 0 || index >= ALL_PRODUCTS.length) return;
-        cart.push(ALL_PRODUCTS[index]);
-        saveCart();
-        Toast.show(ALL_PRODUCTS[index][0] + ' adicionado ao carrinho!', 'success');
+    function addToCart(productId) {
+        const product = ALL_PRODUCTS.find(item => item.id === productId);
+        if (!product) return;
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+        saveCart(`${product.name} adicionado. Quantidade: ${existing ? existing.quantity : 1}.`);
+        Toast.show(product.name + ' adicionado ao carrinho!', 'success');
     }
 
-    function removeFromCart(index) {
-        if (index < 0 || index >= cart.length) return;
-        cart.splice(index, 1);
-        saveCart();
-        Toast.show('Produto removido do carrinho', 'warning');
+    function changeCartQuantity(productId, change) {
+        const item = cart.find(product => product.id === productId);
+        if (!item) return;
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId);
+            return;
+        }
+        saveCart(`Quantidade de ${item.name}: ${item.quantity}.`);
+    }
+
+    function removeFromCart(productId) {
+        const item = cart.find(product => product.id === productId);
+        if (!item) return;
+        cart = cart.filter(product => product.id !== productId);
+        saveCart(`${item.name} removido do carrinho.`);
+        Toast.show(item.name + ' removido do carrinho', 'warning');
+    }
+
+    function buildOrderWhatsAppUrl() {
+        const totals = getCartTotals();
+        const itemLines = cart.map(item =>
+            `${item.quantity}x ${item.name} — ${CURRENCY_FORMATTER.format(item.price * item.quantity)}`
+        );
+        const message = [
+            `Olá! Gostaria de solicitar um pedido na ${BUSINESS_CONFIG.name}.`,
+            '',
+            'Itens:',
+            ...itemLines,
+            '',
+            `Total de itens: ${totals.quantity}`,
+            `Total: ${CURRENCY_FORMATTER.format(totals.value)}`,
+            '',
+            'Aguardo a confirmação de disponibilidade e pagamento. Obrigado!'
+        ].join('\n');
+        return `https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
     }
 
     function requestOrder() {
-        if (cart.length === 0) { Toast.show('Adicione um produto antes de solicitar o pedido.', 'error'); return; }
-        Toast.show('Solicitação não enviada: o canal de pedidos será disponibilizado em breve. Seu carrinho foi mantido.', 'warning');
+        if (cart.length === 0) {
+            Toast.show('Adicione um produto antes de solicitar o pedido.', 'error');
+            return;
+        }
+        window.open(buildOrderWhatsAppUrl(), '_blank', 'noopener,noreferrer');
     }
 
     // ============================================================
@@ -404,8 +518,8 @@
         });
         const productsGrid = $('#productsGrid');
         if (productsGrid) productsGrid.addEventListener('click', function (e) {
-            const button = e.target.closest('[data-product-index]');
-            if (button) addToCart(Number(button.getAttribute('data-product-index')));
+            const button = e.target.closest('[data-product-id]');
+            if (button) addToCart(button.getAttribute('data-product-id'));
         });
         const pagination = $('#pagination');
         if (pagination) pagination.addEventListener('click', function (e) {
@@ -414,8 +528,13 @@
         });
         const cartItems = $('#cartItems');
         if (cartItems) cartItems.addEventListener('click', function (e) {
-            const button = e.target.closest('[data-cart-index]');
-            if (button) removeFromCart(Number(button.getAttribute('data-cart-index')));
+            const button = e.target.closest('[data-cart-action]');
+            if (!button) return;
+            const productId = button.getAttribute('data-product-id');
+            const action = button.getAttribute('data-cart-action');
+            if (action === 'increase') changeCartQuantity(productId, 1);
+            if (action === 'decrease') changeCartQuantity(productId, -1);
+            if (action === 'remove') removeFromCart(productId);
         });
         $$('[data-close]').forEach(btn => {
             btn.addEventListener('click', function () { Modal.close(this.getAttribute('data-close')); });
