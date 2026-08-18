@@ -150,23 +150,23 @@
 
         grid.innerHTML = data.items.map((p, i) => {
             const realIndex = (currentPage - 1) * ITEMS_PER_PAGE + i;
-            return `<article class="product"><img src="${p[3]}" alt="${p[0]}" loading="lazy"><small>${p[1]}</small><div><div><strong>${p[0]}</strong><br><span style="color:var(--muted);font-size:12px;">R$ ${p[2].toFixed(2)}</span></div><button class="add" onclick="addToCart(${realIndex})">+</button></div></article>`;
+            return `<article class="product"><img src="${p[3]}" alt="${p[0]}" loading="lazy"><small>${p[1]}</small><div><div><strong>${p[0]}</strong><br><span style="color:var(--muted);font-size:12px;">R$ ${p[2].toFixed(2)}</span></div><button class="add" type="button" data-product-index="${realIndex}">+</button></div></article>`;
         }).join('');
 
         // Paginação
         pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => {
             const num = i + 1;
-            return `<button class="page-btn ${num === currentPage ? 'active' : ''}" onclick="goToPage(${num})">${num}</button>`;
+            return `<button class="page-btn ${num === currentPage ? 'active' : ''}" type="button" data-page="${num}">${num}</button>`;
         }).join('');
 
         if (window.lucide) lucide.createIcons();
     }
 
-    window.goToPage = function (page) {
+    function goToPage(page) {
         currentPage = page;
         renderProducts();
         document.getElementById('loja').scrollIntoView({ behavior: 'smooth' });
-    };
+    }
 
     // ============================================================
     // SISTEMA DE CARRINHO
@@ -197,7 +197,7 @@
                 items.innerHTML = '<div class="empty"><p>Seu carrinho está vazio.</p></div>';
             } else {
                 items.innerHTML = cart.map((p, i) =>
-                    `<div class="cart-item"><span><strong>${p[0]}</strong><br><small>R$ ${p[2].toFixed(2)}</small></span><button class="add" onclick="removeFromCart(${i})">×</button></div>`
+                    `<div class="cart-item"><span><strong>${p[0]}</strong><br><small>R$ ${p[2].toFixed(2)}</small></span><button class="add" type="button" data-cart-index="${i}">×</button></div>`
                 ).join('');
             }
         }
@@ -208,42 +208,32 @@
         if (window.lucide) lucide.createIcons();
     }
 
-    window.addToCart = function (index) {
+    function addToCart(index) {
         if (index < 0 || index >= ALL_PRODUCTS.length) return;
         cart.push(ALL_PRODUCTS[index]);
         saveCart();
         Toast.show(ALL_PRODUCTS[index][0] + ' adicionado ao carrinho!', 'success');
-    };
+    }
 
-    window.removeFromCart = function (index) {
+    function removeFromCart(index) {
         if (index < 0 || index >= cart.length) return;
         cart.splice(index, 1);
         saveCart();
         Toast.show('Produto removido do carrinho', 'warning');
-    };
+    }
 
-    function checkout() {
-        if (cart.length === 0) { Toast.show('Adicione um produto antes de finalizar.', 'error'); return; }
-        const btn = $('#checkout');
-        if (btn) { btn.disabled = true; btn.innerHTML = 'Processando...'; }
-        setTimeout(() => {
-            const total = cart.reduce((acc, p) => acc + p[2], 0);
-            const count = cart.length;
-            cart = [];
-            saveCart();
-            Modal.close('drawer');
-            Toast.show('Pedido recebido! ' + count + ' produtos. Total: R$ ' + total.toFixed(2).replace('.', ','), 'success');
-            if (btn) { btn.disabled = false; btn.innerHTML = 'Finalizar pedido'; }
-        }, 1500);
+    function requestOrder() {
+        if (cart.length === 0) { Toast.show('Adicione um produto antes de solicitar o pedido.', 'error'); return; }
+        Toast.show('Solicitação não enviada: o canal de pedidos será disponibilizado em breve. Seu carrinho foi mantido.', 'warning');
     }
 
     // ============================================================
     // BOOKING E EVENT LISTENERS
     // ============================================================
-    window.openBooking = function () {
+    function openBooking() {
         setBookingDateDefaults();
         Modal.open('bookingLayer');
-    };
+    }
 
     function setBookingDateDefaults() {
         const dateInput = $('#bookDate');
@@ -256,36 +246,39 @@
         if (!dateInput.value) dateInput.value = y + '-' + m + '-' + d;
     }
 
-    // ============================================================
-    // LOGIN
-    // ============================================================
-    function handleLoginSubmit(e) {
-        e.preventDefault();
-        const nameInput = $('#loginName');
-        const emailInput = $('#loginEmail');
-        const name = nameInput ? nameInput.value.trim() : '';
-        const email = emailInput ? emailInput.value.trim() : '';
-        if (!name || !email) return;
-
-        try { localStorage.setItem('norteUser', JSON.stringify({ name: name, email: email })); } catch (e) { }
-
-        const form = $('#loginForm');
-        const success = $('#loginSuccess');
-        const welcome = $('#welcome');
-        if (form) form.style.display = 'none';
-        if (welcome) welcome.textContent = 'Bem-vindo(a), ' + name + '! Login realizado com ' + email + '.';
-        if (success) success.classList.add('show');
-
-        Toast.show('Login realizado com sucesso!', 'success');
-    }
-
     function setupListeners() {
         const cartBtn = $('#cartBtn');
-        if (cartBtn) cartBtn.addEventListener('click', function () { Modal.open('drawer'); updateCartUI(); });
+        if (cartBtn) cartBtn.addEventListener('click', function () {
+            const destination = this.getAttribute('data-href');
+            if (destination) {
+                window.location.href = destination;
+                return;
+            }
+            Modal.open('drawer');
+            updateCartUI();
+        });
         const viewCartBtn = $('#viewCart');
         if (viewCartBtn) viewCartBtn.addEventListener('click', function () { Modal.open('drawer'); updateCartUI(); });
         const checkoutBtn = $('#checkout');
-        if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
+        if (checkoutBtn) checkoutBtn.addEventListener('click', requestOrder);
+        $$('[data-open-booking]').forEach(btn => {
+            btn.addEventListener('click', openBooking);
+        });
+        const productsGrid = $('#productsGrid');
+        if (productsGrid) productsGrid.addEventListener('click', function (e) {
+            const button = e.target.closest('[data-product-index]');
+            if (button) addToCart(Number(button.getAttribute('data-product-index')));
+        });
+        const pagination = $('#pagination');
+        if (pagination) pagination.addEventListener('click', function (e) {
+            const button = e.target.closest('[data-page]');
+            if (button) goToPage(Number(button.getAttribute('data-page')));
+        });
+        const cartItems = $('#cartItems');
+        if (cartItems) cartItems.addEventListener('click', function (e) {
+            const button = e.target.closest('[data-cart-index]');
+            if (button) removeFromCart(Number(button.getAttribute('data-cart-index')));
+        });
         $$('[data-close]').forEach(btn => {
             btn.addEventListener('click', function () { Modal.close(this.getAttribute('data-close')); });
         });
@@ -295,15 +288,10 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') $$('.layer.show, .drawer.show').forEach(el => Modal.close(el.id));
         });
-        const loginBtn = $('#loginBtn');
-        if (loginBtn) loginBtn.addEventListener('click', function () { Modal.open('loginLayer'); });
-        const loginForm = $('#loginForm');
-        if (loginForm) loginForm.addEventListener('submit', handleLoginSubmit);
         const bookingForm = $('#bookingForm');
         if (bookingForm) bookingForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            Toast.show('Agendamento confirmado! (Simulação)', 'success');
-            Modal.close('bookingLayer');
+            Toast.show('Solicitação não enviada: o canal de agendamento será disponibilizado em breve.', 'warning');
         });
     }
 

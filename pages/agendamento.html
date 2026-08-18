@@ -30,11 +30,10 @@
                     <li><a href="produtos.html">Loja</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="icon" id="cartBtn" aria-label="Carrinho" onclick="window.location.href='produtos.html'">
+                    <button class="icon" id="cartBtn" data-href="produtos.html" aria-label="Carrinho">
                         <i data-lucide="shopping-bag" size="19"></i>
                         <span class="count" id="count">0</span>
                     </button>
-                    <a class="btn ghost" id="loginBtn" href="login.html">Entrar</a>
                     <a class="btn" href="agendamento.html">Agendar <i data-lucide="arrow-up-right" size="15"></i></a>
                 </div>
             </nav>
@@ -47,7 +46,7 @@
                 <div>
                     <span class="eyebrow">Agenda online</span>
                     <h2>Seu próximo horário começa aqui.</h2>
-                    <p>Escolha o serviço, o barbeiro, o melhor dia e chegue só para aproveitar.</p>
+                    <p>Escolha o serviço, o barbeiro e o melhor dia. A barbearia confirmará o horário posteriormente.</p>
                     <p><b style="color:var(--orange)">●</b> <b>Agenda aberta</b><br><small>Terça a sábado · 09h às
                             20h</small></p>
                     <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);">
@@ -55,7 +54,7 @@
                         <ul style="list-style:none;padding:0;font-size:14px;color:var(--muted);">
                             <li style="margin:8px 0;">✂️ Chegue 5 minutos antes</li>
                             <li style="margin:8px 0;">☕ Café e água disponíveis</li>
-                            <li style="margin:8px 0;">📱 Confirmação por e-mail</li>
+                            <li style="margin:8px 0;">📱 Confirmação posterior pela barbearia</li>
                         </ul>
                     </div>
                 </div>
@@ -100,7 +99,7 @@
                             </select>
                         </div>
                     </div>
-                    <button class="btn" type="submit">Confirmar agendamento <i data-lucide="arrow-right"
+                    <button class="btn" type="submit">Solicitar agendamento <i data-lucide="arrow-right"
                             size="16"></i></button>
                 </form>
             </div>

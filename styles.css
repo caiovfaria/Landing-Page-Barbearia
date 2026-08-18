@@ -195,23 +195,6 @@
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Chat */
-[data-theme="dark"] .chat .bubble {
-    background: #2d322f !important;
-    color: #e8e3d9 !important;
-}
-
-[data-theme="dark"] .chat .bubble.user {
-    background: #4a6b5c !important;
-    color: #ffffff !important;
-}
-
-[data-theme="dark"] .chat-form input {
-    background: #1a1d1c !important;
-    color: #e8e3d9 !important;
-    border-color: #3a3f3d !important;
-}
-
 /* Drawer */
 [data-theme="dark"] .drawer>div {
     background: #242827 !important;
@@ -273,18 +256,6 @@
     color: #c6cec7 !important;
 }
 
-/* Pages */
-[data-theme="dark"] .page {
-    color: #e8e3d9 !important;
-    border-color: #3a3f3d !important;
-}
-
-[data-theme="dark"] .page:hover,
-[data-theme="dark"] .page.active {
-    background: #e8e3d9 !important;
-    color: #1a1d1c !important;
-}
-
 /* Ticker */
 [data-theme="dark"] .ticker {
     background: #2d322f !important;
@@ -313,31 +284,6 @@
     background: #1a1d1c !important;
     border-color: #3a3f3d !important;
     color: #e8e3d9 !important;
-}
-
-/* Promo Banner */
-[data-theme="dark"] .promo-banner {
-    background: #1a2a24 !important;
-}
-
-[data-theme="dark"] .promo-banner h2 {
-    color: #ffffff !important;
-}
-
-[data-theme="dark"] .promo-banner p {
-    color: #c6cec7 !important;
-}
-
-/* Suggestion */
-[data-theme="dark"] .suggestion-btn {
-    background: #242827 !important;
-    color: #e8e3d9 !important;
-    border-color: #3a3f3d !important;
-}
-
-[data-theme="dark"] .suggestion-btn:hover {
-    background: var(--orange) !important;
-    color: #ffffff !important;
 }
 
 /* Toast */
@@ -647,22 +593,6 @@ img {
     font: 10px var(--font-mono);
     font-weight: 700;
     pointer-events: none;
-}
-
-.count.bounce {
-    animation: bounce 0.3s ease;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.3);
-    }
 }
 
 /* ============================================================
@@ -1062,37 +992,6 @@ section {
     font-size: 12px;
 }
 
-.pages {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 25px;
-}
-
-.page {
-    width: 35px;
-    height: 35px;
-    background: transparent;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all var(--transition-fast);
-    color: var(--ink);
-}
-
-.page:hover {
-    background: var(--ink);
-    color: var(--cream);
-    border-color: var(--ink);
-}
-
-.page.active {
-    background: var(--ink);
-    color: var(--cream);
-    border-color: var(--ink);
-}
-
 /* ============================================================
    QUOTE
    ============================================================ */
@@ -1358,105 +1257,6 @@ footer {
     background: rgba(0, 0, 0, 0.05);
 }
 
-.success {
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.success.show {
-    display: block;
-}
-
-/* ============================================================
-   CHAT
-   ============================================================ */
-.chat {
-    height: 180px;
-    overflow-y: auto;
-    padding: 4px 0;
-    scroll-behavior: smooth;
-}
-
-.chat::-webkit-scrollbar {
-    width: 4px;
-}
-
-.chat::-webkit-scrollbar-thumb {
-    background: var(--line);
-    border-radius: 2px;
-}
-
-.bubble {
-    margin: 7px 0;
-    max-width: 82%;
-    padding: 9px 11px;
-    border-radius: 10px;
-    background: var(--line);
-    font-size: 13px;
-    line-height: 1.4;
-    animation: bubbleIn 0.2s ease;
-    color: var(--ink);
-    transition: background var(--transition-normal), color var(--transition-normal);
-}
-
-@keyframes bubbleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.bubble.user {
-    margin-left: auto;
-    background: var(--orange);
-    color: #fff;
-}
-
-.chat-form {
-    display: flex;
-    gap: 7px;
-    margin-top: 12px;
-}
-
-.chat-form input {
-    flex: 1;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 10px;
-    background: var(--paper);
-    transition: border-color var(--transition-fast), background var(--transition-normal);
-    color: var(--ink);
-    font: inherit;
-}
-
-.chat-form input:focus {
-    border-color: var(--orange);
-    outline: none;
-}
-
-.suggestion-btn {
-    padding: 6px 12px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-full);
-    font-size: 12px;
-    background: var(--cream);
-    color: var(--ink);
-    transition: all var(--transition-fast);
-    cursor: pointer;
-}
-
-.suggestion-btn:hover {
-    background: var(--orange);
-    color: #fff;
-    border-color: var(--orange);
-}
-
 /* ============================================================
    DRAWER (CART)
    ============================================================ */
@@ -1713,40 +1513,6 @@ footer {
 .form .btn {
     width: 100%;
     justify-content: center;
-}
-
-/* ============================================================
-   PROMO BANNER
-   ============================================================ */
-.promo-banner {
-    background: var(--green);
-    color: var(--cream);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    text-align: center;
-    margin: 40px 0 60px;
-    transition: background var(--transition-normal);
-}
-
-.promo-banner .eyebrow {
-    color: #e99b77;
-}
-
-.promo-banner h2 {
-    font-size: clamp(28px, 3vw, 38px);
-    margin: 8px 0 12px;
-    font-family: var(--font-display);
-}
-
-.promo-banner p {
-    color: #c6cec7;
-    max-width: 500px;
-    margin: 0 auto 20px;
-}
-
-.promo-banner .btn {
-    background: var(--orange);
-    border-color: var(--orange);
 }
 
 /* ============================================================

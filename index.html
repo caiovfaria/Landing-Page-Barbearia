@@ -40,9 +40,8 @@
                         <i data-lucide="shopping-bag" size="19"></i>
                         <span class="count" id="count">0</span>
                     </button>
-                    <button class="btn ghost" id="loginBtn">Entrar</button>
-                    <a class="btn" href="#" onclick="openBooking()">Agendar <i data-lucide="arrow-up-right"
-                            size="15"></i></a>
+                    <button class="btn" type="button" data-open-booking>Agendar <i data-lucide="arrow-up-right"
+                            size="15"></i></button>
                     <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema escuro/claro">
                         <span class="icon-sun">☀️</span>
                         <span class="icon-moon">🌙</span>
@@ -65,8 +64,8 @@
                 <p>Uma barbearia de bairro para quem procura precisão, conversa boa e uma pausa bem aproveitada na
                     semana.</p>
                 <div class="cta">
-                    <a class="btn" href="#" onclick="openBooking()">Encontrar um horário <i data-lucide="calendar-days"
-                            size="16"></i></a>
+                    <button class="btn" type="button" data-open-booking>Encontrar um horário <i
+                            data-lucide="calendar-days" size="16"></i></button>
                     <a class="btn ghost" href="#historia">Conheça a Norte <i data-lucide="arrow-down-right"
                             size="16"></i></a>
                 </div>
@@ -149,7 +148,6 @@
                 <p>Do clássico bem aparado ao visual com textura. Veja o que pode funcionar para você.</p>
             </div>
             <div class="cuts-grid" id="cuts"></div>
-            <div class="pages" id="pages"></div>
         </section>
 
         <!-- Depoimento -->
@@ -174,7 +172,7 @@
                         <span class="eyebrow">Seleção Norte</span>
                         <h2 class="title" id="shop-title">Produtos para o seu estilo.</h2>
                     </div>
-                    <p>Confira nossa seleção completa de produtos. Adicione ao carrinho e finalize seu pedido.</p>
+                    <p>Confira nossa seleção completa de produtos e monte seu pedido no carrinho.</p>
                 </div>
 
                 <!-- Grid dos Produtos -->
@@ -209,7 +207,6 @@
                     <h4>Fale com a gente</h4>
                     <a href="tel:+5511999999999">(11) 99999-9999</a>
                     <a href="mailto:ola@nortebarber.com">ola@nortebarber.com</a>
-                    <button class="btn" id="supportBtn">Suporte <i data-lucide="message-circle" size="15"></i></button>
                 </div>
             </div>
             <div class="bottom">
@@ -218,69 +215,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ============================================================ -->
-    <!-- MODAL SUPORTE (CHAT) -->
-    <!-- ============================================================ -->
-    <div class="layer" id="supportLayer" role="dialog" aria-modal="true" aria-labelledby="support-title">
-        <div class="modal">
-            <button class="icon close" data-close="supportLayer" aria-label="Fechar suporte">
-                <i data-lucide="x"></i>
-            </button>
-            <span class="eyebrow">Suporte Norte</span>
-            <h3 id="support-title">Como ajudamos?</h3>
-            <p>Normalmente respondemos em poucos minutos.</p>
-            <div class="chat" id="chat">
-                <div class="bubble">Olá! Posso ajudar com agendamento, pedidos ou dúvidas sobre serviços. O que você
-                    precisa?</div>
-            </div>
-            <form class="chat-form" id="supportForm">
-                <input type="text" id="chatMessage" required placeholder="Digite sua mensagem..."
-                    aria-label="Digite sua mensagem">
-                <button class="btn" type="submit" aria-label="Enviar mensagem">
-                    <i data-lucide="send" size="16"></i>
-                </button>
-            </form>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;">
-                <button class="suggestion-btn" data-msg="Quero agendar um horário">📅 Agendar</button>
-                <button class="suggestion-btn" data-msg="Quais os preços?">💰 Preços</button>
-                <button class="suggestion-btn" data-msg="Onde fica a barbearia?">📍 Endereço</button>
-                <button class="suggestion-btn" data-msg="Quais produtos vocês têm?">🛍️ Produtos</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- MODAL LOGIN -->
-    <!-- ============================================================ -->
-    <div class="layer" id="loginLayer" role="dialog" aria-modal="true" aria-labelledby="login-title">
-        <div class="modal">
-            <button class="icon close" data-close="loginLayer" aria-label="Fechar login">
-                <i data-lucide="x"></i>
-            </button>
-            <span class="eyebrow">Área do cliente</span>
-            <h3 id="login-title">Bem-vindo de volta.</h3>
-            <p>Entre para acompanhar seus agendamentos e pedidos.</p>
-            <form id="loginForm" novalidate>
-                <div class="field">
-                    <label for="loginName">Nome</label>
-                    <input id="loginName" type="text" required placeholder="Seu nome">
-                </div>
-                <div class="field">
-                    <label for="loginEmail">E-mail</label>
-                    <input id="loginEmail" type="email" required placeholder="voce@email.com">
-                </div>
-                <button class="btn" type="submit" style="width:100%;justify-content:center;">
-                    Entrar na Norte <i data-lucide="arrow-right" size="16"></i>
-                </button>
-            </form>
-            <div class="success" id="loginSuccess">
-                <i data-lucide="circle-check-big" color="#c96036" size="48"></i>
-                <h3>Você está dentro.</h3>
-                <p id="welcome"></p>
-            </div>
-        </div>
-    </div>
 
     <!-- ============================================================ -->
     <!-- MODAL AGENDAMENTO -->
@@ -292,7 +226,7 @@
             </button>
             <span class="eyebrow">Agenda online</span>
             <h3 id="booking-title">Seu próximo horário começa aqui.</h3>
-            <p>Escolha o serviço, o barbeiro, o melhor dia e chegue só para aproveitar.</p>
+            <p>Escolha o serviço, o barbeiro e o melhor dia. A barbearia confirmará o horário posteriormente.</p>
             <form id="bookingForm" novalidate style="margin-top:16px;">
                 <div class="field">
                     <label for="bookName">Seu nome</label>
@@ -334,7 +268,7 @@
                         </select>
                     </div>
                 </div>
-                <button class="btn" type="submit" style="width:100%;justify-content:center;">Confirmar agendamento <i
+                <button class="btn" type="submit" style="width:100%;justify-content:center;">Solicitar agendamento <i
                         data-lucide="arrow-right" size="16"></i></button>
             </form>
         </div>
@@ -360,7 +294,7 @@
                 <span id="total">R$ 0</span>
             </div>
             <button class="btn" id="checkout" style="width:100%;justify-content:center;margin-top:18px;">
-                Finalizar pedido
+                Solicitar pedido
             </button>
         </div>
     </div>
